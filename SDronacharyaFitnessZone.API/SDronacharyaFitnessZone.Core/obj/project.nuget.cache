@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "51fEzy0oOXk=",
+  "success": true,
+  "projectFilePath": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\smsin\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.10\\microsoft.entityframeworkcore.abstractions.8.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,45 @@
+<h1>S Dronacharya Fitness Zone</h1>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Login Name</th>
+      <th>First Name</th>
+      <th>Middle Name</th>
+      <th>Last Name</th>
+      <th>Date of Birth</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Alternate Phone Number</th>
+      <th>Address</th>
+      <th>Blood Group</th>
+      <th>Membership Type</th>
+      <th>Joining Date</th>
+      <th>Old Member</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Loop through each member -->
+    <tr *ngFor="let member of members">
+      <td>{{ member.id }}</td>
+      <td>{{ member.memberLoginName }}</td>
+      <td>{{ member.firstName }}</td>
+      <td>{{ member.middleName }}</td>
+      <td>{{ member.lastName }}</td>
+      <td>{{ member.dateOfBirth }}</td>
+      <td>{{ member.age }}</td>
+      <td>{{ member.gender === 0 ? 'Male' : 'Female' }}</td>
+      <td>{{ member.email }}</td>
+      <td>{{ member.phoneNumber }}</td>
+      <td>{{ member.alternatePhoneNumber }}</td>
+      <td>{{ member.address }}</td>
+      <td>{{ member.bloodGroup }}</td>
+      <td>{{ member.membershipType === 1 ? 'Regular' : 'Other' }}</td>
+      <td>{{ member.joiningDate }}</td>
+      <td>{{ member.isOldmember ? 'Yes' : 'No' }}</td>
+    </tr>
+  </tbody>
+</table>

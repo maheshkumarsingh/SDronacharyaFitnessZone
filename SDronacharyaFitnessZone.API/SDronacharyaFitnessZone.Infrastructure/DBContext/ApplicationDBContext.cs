@@ -27,7 +27,9 @@ namespace SDronacharyaFitnessZone.Infrastructure.DBContext
                 EnumLookupOptions.Default
                 .Singularize()
                 .UseNumberAsIdentifier());
-
+            modelBuilder.Entity<Member>()
+            .HasIndex(m => m.MemberLoginName)
+            .IsUnique();
         }
     }
 }

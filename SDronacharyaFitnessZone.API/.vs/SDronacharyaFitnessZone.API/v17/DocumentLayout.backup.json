@@ -1,0 +1,373 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|solutionrelative:sdronacharyafitnesszone.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.api\\startupextensions\\configureserviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|solutionrelative:sdronacharyafitnesszone.api\\startupextensions\\configureserviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.api\\controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|solutionrelative:sdronacharyafitnesszone.api\\controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.infrastructure\\repositories\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|solutionrelative:sdronacharyafitnesszone.infrastructure\\repositories\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\domain\\entities\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\domain\\entities\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.infrastructure\\repositories\\memberrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|solutionrelative:sdronacharyafitnesszone.infrastructure\\repositories\\memberrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\domain\\repositorycontracts\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\domain\\repositorycontracts\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\dtos\\membershipresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\dtos\\membershipresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\dtos\\memberresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\dtos\\memberresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\services\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\services\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\dtos\\addmemberrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\dtos\\addmemberrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\servicecontracts\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\servicecontracts\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\servicecontracts\\imemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\servicecontracts\\imemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.infrastructure\\dbcontext\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|solutionrelative:sdronacharyafitnesszone.infrastructure\\dbcontext\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\dtos\\addmembershiprequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\dtos\\addmembershiprequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\domain\\entities\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\domain\\entities\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.api\\controllers\\membershipscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84E383E2-EC2C-40B0-A575-A20E61934C4A}|SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.UserInterface.csproj|solutionrelative:sdronacharyafitnesszone.api\\controllers\\membershipscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\dtos\\updatememberrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\dtos\\updatememberrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.core\\domain\\entities\\supplement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB501A96-BD70-409F-B2CE-ED29F2A8C34E}|SDronacharyaFitnessZone.Core\\SDronacharyaFitnessZone.Core.csproj|solutionrelative:sdronacharyafitnesszone.core\\domain\\entities\\supplement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|e:\\sdronacharyafitnesszone\\sdronacharyafitnesszone.api\\sdronacharyafitnesszone.infrastructure\\migrations\\20241024111230_initialdbsetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7CAC99F-F29E-46AB-A1F7-D93DF1BD13FD}|SDronacharyaFitnessZone.Infrastructure\\SDronacharyaFitnessZone.Infrastructure.csproj|solutionrelative:sdronacharyafitnesszone.infrastructure\\migrations\\20241024111230_initialdbsetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\Program.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.API\\Program.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\Program.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.API\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T12:27:31.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConfigureServiceExtension.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\StartUpExtensions\\ConfigureServiceExtension.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.API\\StartUpExtensions\\ConfigureServiceExtension.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\StartUpExtensions\\ConfigureServiceExtension.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.API\\StartUpExtensions\\ConfigureServiceExtension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T12:27:25.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MembersController.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\Controllers\\MembersController.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.API\\Controllers\\MembersController.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\Controllers\\MembersController.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.API\\Controllers\\MembersController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAvwBcAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T11:08:54.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MembershipRepository.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\Repositories\\MembershipRepository.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Infrastructure\\Repositories\\MembershipRepository.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\Repositories\\MembershipRepository.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Infrastructure\\Repositories\\MembershipRepository.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwC4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T11:06:50.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IMembershipRepository.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\RepositoryContracts\\IMembershipRepository.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\Domain\\RepositoryContracts\\IMembershipRepository.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\RepositoryContracts\\IMembershipRepository.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\Domain\\RepositoryContracts\\IMembershipRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T11:06:29.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MemberService.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Services\\MemberService.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\Services\\MemberService.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Services\\MemberService.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\Services\\MemberService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAzwEAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:42:23.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Member.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\Entities\\Member.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\Domain\\Entities\\Member.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\Entities\\Member.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\Domain\\Entities\\Member.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAABCwEUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:35:18.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MemberRepository.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\Repositories\\MemberRepository.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Infrastructure\\Repositories\\MemberRepository.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\Repositories\\MemberRepository.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Infrastructure\\Repositories\\MemberRepository.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAywCYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:57:36.532Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MembershipService.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Services\\MembershipService.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\Services\\MembershipService.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Services\\MembershipService.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\Services\\MembershipService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAvwCAAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:42:37.438Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MembershipResponseDTO.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\MembershipResponseDTO.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\DTOs\\MembershipResponseDTO.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\MembershipResponseDTO.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\DTOs\\MembershipResponseDTO.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:41:25.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MemberResponseDTO.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\MemberResponseDTO.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\DTOs\\MemberResponseDTO.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\MemberResponseDTO.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\DTOs\\MemberResponseDTO.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:40:30.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AddMemberRequestDTO.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\AddMemberRequestDTO.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\DTOs\\AddMemberRequestDTO.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\AddMemberRequestDTO.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\DTOs\\AddMemberRequestDTO.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAgwGIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:39:15.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IMembershipService.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\ServiceContracts\\IMembershipService.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\ServiceContracts\\IMembershipService.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\ServiceContracts\\IMembershipService.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\ServiceContracts\\IMembershipService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:51:44.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ApplicationDBContext.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\DBContext\\ApplicationDBContext.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Infrastructure\\DBContext\\ApplicationDBContext.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\DBContext\\ApplicationDBContext.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Infrastructure\\DBContext\\ApplicationDBContext.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAApwB4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T11:12:04.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "20241024111230_InitialDBSetup.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\Migrations\\20241024111230_InitialDBSetup.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Infrastructure\\Migrations\\20241024111230_InitialDBSetup.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Infrastructure\\Migrations\\20241024111230_InitialDBSetup.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Infrastructure\\Migrations\\20241024111230_InitialDBSetup.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAywJYAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T11:12:30.328Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IMemberService.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\ServiceContracts\\IMemberService.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\ServiceContracts\\IMemberService.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\ServiceContracts\\IMemberService.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\ServiceContracts\\IMemberService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T11:16:54.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MembershipsController.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\Controllers\\MembershipsController.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.API\\Controllers\\MembershipsController.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.API\\Controllers\\MembershipsController.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.API\\Controllers\\MembershipsController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:51:15.926Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UpdateMemberRequestDTO.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\UpdateMemberRequestDTO.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\DTOs\\UpdateMemberRequestDTO.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\UpdateMemberRequestDTO.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\DTOs\\UpdateMemberRequestDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:47:02.785Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AddMembershipRequestDTO.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\AddMembershipRequestDTO.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\DTOs\\AddMembershipRequestDTO.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\DTOs\\AddMembershipRequestDTO.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\DTOs\\AddMembershipRequestDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:44:56.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Membership.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\Entities\\Membership.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\Domain\\Entities\\Membership.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\Entities\\Membership.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\Domain\\Entities\\Membership.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:36:40.629Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Supplement.cs",
+              "DocumentMoniker": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\Entities\\Supplement.cs",
+              "RelativeDocumentMoniker": "SDronacharyaFitnessZone.Core\\Domain\\Entities\\Supplement.cs",
+              "ToolTip": "E:\\SDronacharyaFitnessZone\\SDronacharyaFitnessZone.API\\SDronacharyaFitnessZone.Core\\Domain\\Entities\\Supplement.cs",
+              "RelativeToolTip": "SDronacharyaFitnessZone.Core\\Domain\\Entities\\Supplement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:37:57.98Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

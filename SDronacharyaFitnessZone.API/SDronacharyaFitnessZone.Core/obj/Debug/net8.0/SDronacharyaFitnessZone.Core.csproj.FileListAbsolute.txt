@@ -1,0 +1,13 @@
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\bin\Debug\net8.0\SDronacharyaFitnessZone.Core.deps.json
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\bin\Debug\net8.0\SDronacharyaFitnessZone.Core.dll
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\bin\Debug\net8.0\SDronacharyaFitnessZone.Core.pdb
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.AssemblyInfoInputs.cache
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.AssemblyInfo.cs
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.csproj.CoreCompileInputs.cache
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.dll
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\refint\SDronacharyaFitnessZone.Core.dll
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.pdb
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\ref\SDronacharyaFitnessZone.Core.dll
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.sourcelink.json
+E:\SDronacharyaFitnessZone\SDronacharyaFitnessZone.API\SDronacharyaFitnessZone.Core\obj\Debug\net8.0\SDronacharyaFitnessZone.Core.csproj.AssemblyReference.cache

@@ -22,6 +22,127 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Member", b =>
+                {
+                    b.Property<string>("MemberLoginName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AlternatePhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BloodGroup")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConfirmPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("DateOfBirth")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GymId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("JoiningDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("MembershipType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MemberLoginName");
+
+                    b.HasIndex("Gender");
+
+                    b.HasIndex("GymId");
+
+                    b.HasIndex("MemberLoginName")
+                        .IsUnique();
+
+                    b.HasIndex("MembershipType");
+
+                    b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("Membership", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsMembershipActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemberLoginName")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("MembershipAmount")
+                        .HasColumnType("float");
+
+                    b.Property<DateOnly>("MembershipEndDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("MembershipStartDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("MembershipType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberLoginName");
+
+                    b.HasIndex("MembershipType");
+
+                    b.ToTable("Memberships");
+                });
+
             modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Gym", b =>
                 {
                     b.Property<int>("GymId")
@@ -86,121 +207,6 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
                     b.ToTable("Maintenances");
                 });
 
-            modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Member", b =>
-                {
-                    b.Property<string>("MemberID")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AlternatePhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BloodGroup")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConfirmPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("DateOfBirth")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GymId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("JoiningDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("MiddleName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MemberID");
-
-                    b.HasIndex("Gender");
-
-                    b.HasIndex("GymId");
-
-                    b.ToTable("Members");
-                });
-
-            modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Membership", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsMembershipActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MemberID")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<double>("MembershipAmount")
-                        .HasColumnType("float");
-
-                    b.Property<DateOnly>("MembershipEndDate")
-                        .HasColumnType("date");
-
-                    b.Property<DateOnly>("MembershipStartDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("MembershipType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MemberID");
-
-                    b.HasIndex("MembershipType");
-
-                    b.ToTable("Memberships");
-                });
-
             modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Supplement", b =>
                 {
                     b.Property<int>("SupplementId")
@@ -237,7 +243,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplementOrderId"));
 
-                    b.Property<string>("MemberID")
+                    b.Property<string>("MemberLoginName")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("OrderDate")
@@ -254,7 +260,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
 
                     b.HasKey("SupplementOrderId");
 
-                    b.HasIndex("MemberID");
+                    b.HasIndex("MemberLoginName");
 
                     b.HasIndex("SupplementId");
 
@@ -334,7 +340,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Member", b =>
+            modelBuilder.Entity("Member", b =>
                 {
                     b.HasOne("SpatialFocus.EntityFrameworkCore.Extensions.EnumWithNumberLookup<SDronacharyaFitnessZone.Core.Domain.Entities.Enums.Gender>", null)
                         .WithMany()
@@ -344,14 +350,22 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
 
                     b.HasOne("SDronacharyaFitnessZone.Core.Domain.Entities.Gym", null)
                         .WithMany("Members")
-                        .HasForeignKey("GymId");
+                        .HasForeignKey("GymId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SpatialFocus.EntityFrameworkCore.Extensions.EnumWithNumberLookup<SDronacharyaFitnessZone.Core.Domain.Entities.Enums.MembershipType>", null)
+                        .WithMany()
+                        .HasForeignKey("MembershipType")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Membership", b =>
+            modelBuilder.Entity("Membership", b =>
                 {
-                    b.HasOne("SDronacharyaFitnessZone.Core.Domain.Entities.Member", "Member")
+                    b.HasOne("Member", "Member")
                         .WithMany("Memberships")
-                        .HasForeignKey("MemberID");
+                        .HasForeignKey("MemberLoginName");
 
                     b.HasOne("SpatialFocus.EntityFrameworkCore.Extensions.EnumWithNumberLookup<SDronacharyaFitnessZone.Core.Domain.Entities.Enums.MembershipType>", null)
                         .WithMany()
@@ -364,9 +378,9 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
 
             modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.SupplementOrder", b =>
                 {
-                    b.HasOne("SDronacharyaFitnessZone.Core.Domain.Entities.Member", "Member")
+                    b.HasOne("Member", "Member")
                         .WithMany("SupplementOrders")
-                        .HasForeignKey("MemberID");
+                        .HasForeignKey("MemberLoginName");
 
                     b.HasOne("SDronacharyaFitnessZone.Core.Domain.Entities.Supplement", "Supplement")
                         .WithMany()
@@ -379,16 +393,16 @@ namespace SDronacharyaFitnessZone.Infrastructure.Migrations
                     b.Navigation("Supplement");
                 });
 
-            modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Gym", b =>
-                {
-                    b.Navigation("Members");
-                });
-
-            modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Member", b =>
+            modelBuilder.Entity("Member", b =>
                 {
                     b.Navigation("Memberships");
 
                     b.Navigation("SupplementOrders");
+                });
+
+            modelBuilder.Entity("SDronacharyaFitnessZone.Core.Domain.Entities.Gym", b =>
+                {
+                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }
