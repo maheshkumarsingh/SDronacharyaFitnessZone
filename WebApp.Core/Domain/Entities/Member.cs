@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using WebApp.Core.Domain.Entities.Enums;
 using WebApp.Core.Domain.Utility;
+using WebApp.Core.DTOs;
 
 namespace WebApp.Core.Domain.Entities
 {
@@ -70,8 +71,8 @@ namespace WebApp.Core.Domain.Entities
         }
         public List<Membership>? Memberships { get; set; } = [];
         public List<SupplementOrder>? SupplementOrders { get; set; } = [];
-        public int GymId { get; set; } = 1;
         public IList<Photo> Photos { get; set; } = [];
+        public int GymId { get; set; } = 1;
 
         public int GetAge()
         {

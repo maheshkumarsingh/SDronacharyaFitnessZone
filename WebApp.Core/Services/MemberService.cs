@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.RepositoryContracts;
+using WebApp.Core.DTOs;
 using WebApp.Core.ServiceContracts;
 
 namespace WebApp.Core.Services
@@ -44,17 +45,13 @@ namespace WebApp.Core.Services
         public async Task<IList<MemberResponseDTO>> GetAllMembers()
         {
             var members = await _memberRepository.GetAllMembers();
-            IList<MemberResponseDTO> memberResponseDTOs = new List<MemberResponseDTO>();
+            var memberResponseDTOs = new List<MemberResponseDTO>();
             foreach (var member in members)
             {
-                MemberResponseDTO memberResponseDTO = member.ToMemberResponseDTO();
-                IList<Membership> memberships = await _membershipRepository.GetMemberMembershipsList(member.MemberLoginName);
-                IList<MembershipResponseDTO> membershipResponseDTOs = new List<MembershipResponseDTO>();
-                foreach (Membership membership in memberships)
-                {
-                    membershipResponseDTOs.Add(membership.ToMembershipReponseDTO());
-                }
-                memberResponseDTO.Memberships = membershipResponseDTOs;
+                var memberResponseDTO = member.ToMemberResponseDTO();
+                memberResponseDTO.Memberships = member.Memberships!.Select(x => x.ToMembershipReponseDTO()).ToList();
+                memberResponseDTO.Photos = member.Photos.Select(x => x.ToPhotoResponseDTO()).ToList();
+                memberResponseDTO.SupplementOrders = member.SupplementOrders.Select(x => x.ToSupplementResponseDTO()).ToList();
                 memberResponseDTOs.Add(memberResponseDTO);
             }
             return memberResponseDTOs;
@@ -63,14 +60,11 @@ namespace WebApp.Core.Services
         public async Task<MemberResponseDTO> GetMemberById(string memberID)
         {
             var member = await _memberRepository.GetMemberById(memberID);
-            IList<Membership> memberships = await _membershipRepository.GetMemberMembershipsList(member.MemberLoginName);
-            IList<MembershipResponseDTO> membershipResponseDTOs = new List<MembershipResponseDTO>();
-            foreach (Membership membership in memberships)
-            {
-                membershipResponseDTOs.Add(membership.ToMembershipReponseDTO());
-            }
+            //IList<Membership> memberships = await _membershipRepository.GetMemberMembershipsList(member.MemberLoginName);
             MemberResponseDTO memberResponseDTO = member.ToMemberResponseDTO();
-            memberResponseDTO.Memberships = membershipResponseDTOs;
+            memberResponseDTO.Memberships = member.Memberships!.Select(x => x.ToMembershipReponseDTO()).ToList();
+            memberResponseDTO.Photos = member.Photos.Select(x => x.ToPhotoResponseDTO()).ToList();
+            memberResponseDTO.SupplementOrders = member.SupplementOrders.Select(x=>x.ToSupplementResponseDTO()).ToList();
             if (member != null)
             {
                 return memberResponseDTO;

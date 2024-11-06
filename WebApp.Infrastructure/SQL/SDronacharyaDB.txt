@@ -1,0 +1,285 @@
+{
+  "firstName": "Rakesh",
+  "middleName": "Kumar",
+  "lastName": "Singh",
+  "dateOfBirth": "1999-05-07",
+  "gender": 0,
+  "email": "meet2mahesh17@gmail.com",
+  "password": "Mahesh@123",
+  "confirmPassword": "Mahesh@123",
+  "phoneNumber": "9525958755",
+  "alternatePhoneNumber": "7992287591",
+  "address": "Harina",
+  "bloodGroup": "A+",
+  "membershipType": 2,
+  "joiningDate": "2022-09-25",
+  "membershipStartDate": "2024-11-03"
+}
+
+select * from gender;
+select * from Gyms;
+select * from Maintenances;
+select * from Members;
+select * from membership_type;
+select * from MembershipPlans;
+select * from Memberships;
+select * from Photos;
+select * from SupplementOrders;
+select * from Supplements;
+
+INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (0, 1, 500  , 'fa-calendar-day');
+INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (1, 3, 1500 , 'fa-calendar-alt');
+INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (2, 6, 3000 , 'fa-calendar-check');
+INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (3, 12,6000 , 'fa-calendar');
+
+USE [SDronacharyaDB]
+GO
+
+INSERT INTO [dbo].[Gyms]
+           ([GymName]
+           ,[GymDescription]
+           ,[GymOffers]
+           ,[GymAddress]
+           ,[GymContactNumber])
+     VALUES
+           ('S Dronacharya Fitness zone',
+		   'Fitness zone for both Male and Female.',
+		   'No Offers',
+		   'Harina',
+		   '9525958755')
+GO
+SELECT TOP (1000) [Id]
+      ,[Url]
+      ,[IsMain]
+      ,[PublicId]
+      ,[MemberLoginName]
+  FROM [SDronacharyaDB].[dbo].[Photos]
+
+--INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/90.jpg',1,'meet2mahesh17');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/87.jpg',1,'satya.professional1');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/57.jpg',1,'akshay.patil');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/3.jpg',1,'aman.singh');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/8.jpg',1,'ankit.ranjan');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/9.jpg',1,'anilkumar');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/women/10.jpg',1,'soni.kumari');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/women/11.jpg',1,'yadav.shikha505');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/9.jpg',1,'amartya.kaushik');
+
+  INSERT INTO Supplements (Name, Description, Price, ImageUrl, GymId, Weight)
+	VALUES 
+('MuscleBlaze Whey Protein', 'High-quality protein for muscle building, available in chocolate flavor.', 1999.00, 'https://example.com/images/muscleblaze_whey.jpg', 1, '1 kg'),
+('Himalaya Liv.52', 'Supports liver health and improves digestion, popular herbal supplement.', 150.00, 'https://example.com/images/himalaya_liv52.jpg', 1, '100 tablets'),
+('ON Gold Standard Whey', 'Internationally renowned whey protein for muscle recovery, available in vanilla flavor.', 2999.00, 'https://example.com/images/on_gold_standard_whey.jpg', 1, '1 kg'),
+('MuscleBlaze BCAA Pro', 'Intra-workout drink to reduce muscle breakdown and improve recovery.', 999.00, 'https://example.com/images/muscleblaze_bcaa.jpg', 1, '450 g'),
+('Himalaya Ashwagandha', 'Herbal supplement for stress relief and immune support.', 200.00, 'https://example.com/images/himalaya_ashwagandha.jpg', 1, '60 tablets'),
+('Big Muscles Crude Whey', 'Unflavored whey protein powder, ideal for mixing with other ingredients.', 899.00, 'https://example.com/images/big_muscles_crude_whey.jpg', 1, '1 kg'),
+('Ultimate Nutrition Prostar Whey', 'High-quality whey protein with added amino acids, available in strawberry flavor.', 3199.00, 'https://example.com/images/ultimate_nutrition_prostar.jpg', 1, '2 kg'),
+('GNC Mega Men Multivitamin', 'Comprehensive multivitamin for men’s overall health.', 799.00, 'https://example.com/images/gnc_mega_men.jpg', 1, '90 tablets'),
+('Himalaya Shatavari', 'Supports women’s health and reproductive health, natural herbal supplement.', 180.00, 'https://example.com/images/himalaya_shatavari.jpg', 1, '60 tablets'),
+( 'Big Muscles Freak', 'Mass gainer for bulking and gaining weight, available in chocolate flavor.', 1599.00, 'https://example.com/images/big_muscles_freak.jpg', 1, '3 kg');
+
+INSERT INTO SupplementOrders (OrderDate, Quantity, TotalPrice, MemberLoginName, SupplementId)
+VALUES
+('2024-11-01 10:30:00', 2, 3998.00, 'meet2mahesh17', 1),
+('2024-11-02 14:20:00', 1, 150.00, 'satya.professional1', 2),
+('2024-11-03 08:45:00', 3, 8997.00, 'akshay.patil', 3),
+('2024-11-03 16:10:00', 1, 999.00, 'aman.singh', 4),
+('2024-11-04 11:30:00', 2, 400.00, 'ankit.ranjan', 5),
+('2024-11-05 13:25:00', 1, 899.00, 'anilkumar', 6),
+('2024-11-06 09:15:00', 1, 3199.00, 'soni.kumari', 7),
+('2024-11-07 12:05:00', 2, 1598.00, 'yadav.shikha505', 8),
+('2024-11-08 15:55:00', 1, 180.00, 'amartya.kaushik', 9),
+('2024-11-09 17:40:00', 2, 3198.00, 'meet2mahesh17', 10),
+('2024-11-10 10:20:00', 1, 1999.00, 'satya.professional1', 1),
+('2024-11-10 18:45:00', 3, 450.00, 'akshay.patil', 5),
+('2024-11-11 13:50:00', 2, 5998.00, 'aman.singh', 3),
+('2024-11-12 16:30:00', 1, 150.00, 'ankit.ranjan', 2),
+('2024-11-13 08:10:00', 2, 1798.00, 'anilkumar', 8),
+('2024-11-14 11:40:00', 1, 1599.00, 'soni.kumari', 10),
+('2024-11-15 12:25:00', 3, 540.00, 'yadav.shikha505', 5),
+('2024-11-16 15:30:00', 1, 899.00, 'amartya.kaushik', 6),
+('2024-11-17 09:20:00', 2, 1998.00, 'meet2mahesh17', 4),
+('2024-11-18 14:50:00', 1, 2999.00, 'satya.professional1', 3);
+
+INSERT INTO Memberships (MembershipType, IsMembershipActive, MembershipStartDate, MembershipEndDate, MembershipAmount, PaidAmount, DueAmount, MemberLoginName)
+VALUES 
+(0, 1, '2024-01-01', '2024-02-01', 500.00, 500.00, 0.00, 'meet2mahesh17'),
+(1, 1, '2024-01-15', '2024-04-15', 1500.00, 1500.00, 0.00, 'satya.professional1'),
+(2, 1, '2024-02-01', '2024-08-01', 3000.00, 2500.00, 500.00, 'akshay.patil'),
+(3, 1, '2024-03-01', '2025-03-01', 6000.00, 6000.00, 0.00, 'aman.singh'),
+(0, 0, '2024-01-01', '2024-02-01', 500.00, 400.00, 100.00, 'ankit.ranjan'),
+(1, 1, '2024-04-01', '2024-07-01', 1500.00, 1500.00, 0.00, 'anilkumar'),
+(2, 1, '2024-05-01', '2024-11-01', 3000.00, 3000.00, 0.00, 'soni.kumari'),
+(3, 0, '2024-02-01', '2025-02-01', 6000.00, 5500.00, 500.00, 'yadav.shikha505'),
+(1, 1, '2024-06-01', '2024-09-01', 1500.00, 1500.00, 0.00, 'amartya.kaushik');
+
+INSERT INTO Memberships (MembershipType, IsMembershipActive, MembershipStartDate, MembershipEndDate, MembershipAmount, PaidAmount, DueAmount, MemberLoginName)
+VALUES 
+(0, 1, '2024-07-01', '2024-08-01', 500.00, 500.00, 0.00, 'meet2mahesh17'),
+(1, 1, '2024-08-15', '2024-11-15', 1500.00, 1500.00, 0.00, 'satya.professional1'),
+(2, 0, '2024-05-01', '2024-11-01', 3000.00, 2500.00, 500.00, 'akshay.patil'),
+(3, 1, '2023-12-01', '2024-12-01', 6000.00, 5500.00, 500.00, 'aman.singh'),
+(0, 1, '2024-03-01', '2024-04-01', 500.00, 500.00, 0.00, 'ankit.ranjan'),
+(1, 0, '2023-11-01', '2024-02-01', 1500.00, 1200.00, 300.00, 'anilkumar'),
+(2, 1, '2024-09-01', '2025-03-01', 3000.00, 3000.00, 0.00, 'soni.kumari'),
+(3, 1, '2024-01-01', '2025-01-01', 6000.00, 6000.00, 0.00, 'yadav.shikha505'),
+(1, 0, '2023-10-01', '2024-01-01', 1500.00, 1400.00, 100.00, 'amartya.kaushik'),
+(2, 1, '2024-07-01', '2025-01-01', 3000.00, 3000.00, 0.00, 'meet2mahesh17'),
+(0, 1, '2024-09-01', '2024-10-01', 500.00, 500.00, 0.00, 'satya.professional1'),
+(3, 1, '2023-08-01', '2024-08-01', 6000.00, 6000.00, 0.00, 'akshay.patil'),
+(1, 0, '2024-02-15', '2024-05-15', 1500.00, 1000.00, 500.00, 'aman.singh'),
+(2, 1, '2024-11-01', '2025-05-01', 3000.00, 2500.00, 500.00, 'ankit.ranjan'),
+(0, 1, '2024-06-01', '2024-07-01', 500.00, 500.00, 0.00, 'anilkumar'),
+(3, 1, '2024-04-01', '2025-04-01', 6000.00, 6000.00, 0.00, 'soni.kumari'),
+(1, 1, '2024-07-15', '2024-10-15', 1500.00, 1500.00, 0.00, 'yadav.shikha505'),
+(2, 1, '2024-03-01', '2024-09-01', 3000.00, 3000.00, 0.00, 'amartya.kaushik');
+
+DBCC CHECKIDENT ('MembershipPlans', RESEED, 0);
+insert into MembershipPlans (MembershipTypeId, Duration,Price)
+	values (0,1,500),
+		   (1,3,1500),
+		   (2,6,3000),
+		   (3,12,6000);
+INSERT INTO Maintenances (Name, Description, Charge, Date, GymId)
+VALUES
+('Equipment Repair', 'Treadmill belt replacement', 2500.00, '2024-01-05', 1),
+('Cleaning Service', 'Deep cleaning of gym floor and equipment', 1500.00, '2024-01-12', 1),
+('Electrical Maintenance', 'Lighting repair and wiring check', 1200.00, '2024-02-10', 1),
+('Air Conditioning Service', 'AC filter cleaning and gas refill', 1800.00, '2024-02-25', 1),
+('Plumbing', 'Fixing leaky faucets and water dispenser', 800.00, '2024-03-05', 1),
+('Equipment Upgrade', 'Installation of new weightlifting station', 5000.00, '2024-03-20', 1),
+('Painting', 'Repainting walls in gym area', 3500.00, '2024-04-15', 1),
+('HVAC Repair', 'Heating system repair', 3000.00, '2024-05-01', 1),
+('Locker Repair', 'Repair of locker doors and locks', 900.00, '2024-05-20', 1),
+('Equipment Maintenance', 'Monthly maintenance for cardio machines', 2000.00, '2024-06-01', 1),
+('Sanitization', 'COVID-19 deep sanitization', 2500.00, '2024-06-15', 1),
+('Internet Setup', 'Wi-Fi installation for gym users', 1500.00, '2024-07-01', 1),
+('Mirror Replacement', 'Replacement of broken mirror in weight area', 1200.00, '2024-07-10', 1),
+('Roof Repair', 'Fixing minor leaks in gym roof', 2000.00, '2024-08-01', 1),
+('Pool Maintenance', 'Cleaning and chemical balancing for pool', 3000.00, '2024-08-20', 1);
+npm install ngx-bootstrap bootstrap font-awesome
+
+          "options": {
+            "ssl": true,
+            "sslCert": "./ssl/localhost.pem",
+            "sslKey": "./ssl/localhost-key.pem"
+          },
+
+
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/assets/fonts",
+                "output": "/assets/fonts"
+              }
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "src/styles.css"
+            ],
+			
+			
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "SDronacharyaFitnessZone.ClientV2": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/sdronacharya-fitness-zone.client-v2",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "SDronacharyaFitnessZone.ClientV2:build:production"
+            },
+            "development": {
+              "buildTarget": "SDronacharyaFitnessZone.ClientV2:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}
+
+

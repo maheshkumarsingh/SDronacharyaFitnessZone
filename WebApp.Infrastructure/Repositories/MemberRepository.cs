@@ -35,12 +35,20 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
 
         public async Task<IList<Member>> GetAllMembers()
         {
-            return await _dbContext.Members.ToListAsync();
+            return await _dbContext.Members
+                                    .Include(m => m.Memberships)
+                                    .Include(m => m.SupplementOrders)
+                                    .Include(m => m.Photos)
+                                    .ToListAsync();
         }
 
         public async Task<Member> GetMemberById(string memberLoginName)
         {
-            return await _dbContext.Members.FirstOrDefaultAsync(x => x.MemberLoginName == memberLoginName);
+            return await _dbContext.Members
+                                            .Include(m => m.Memberships)
+                                            .Include(m => m.SupplementOrders)
+                                            .Include(m => m.Photos)
+                                            .FirstOrDefaultAsync(m => m.MemberLoginName == memberLoginName);
         }
 
         public async Task<Member> LoginMember(string memberLoginName, string passWord)

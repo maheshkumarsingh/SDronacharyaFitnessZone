@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.Entities.Enums;
+using WebApp.Core.DTOs;
 
 namespace SDronacharyaFitnessZone.Core.DTOs
 {
@@ -30,7 +31,8 @@ namespace SDronacharyaFitnessZone.Core.DTOs
         public bool IsOldmember { get; set; }
         //public string ImageUrl { get; set; }
         public IList<MembershipResponseDTO>? Memberships { get; set; } = [];
-        public IList<SupplementOrder> SupplementOrders { get; set; } = [];
+        public IList<SupplementOrderResponseDTO> SupplementOrders { get; set; } = [];
+        public IList<PhotoResponseDTO> Photos { get; set; } = [];
         [Required]
         public string Token { get; set; }
     }

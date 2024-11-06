@@ -1,14 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Member } from '../../_models/member';
 import { Membership } from '../../_models/membership';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CurrencyPipe, DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { MemberService } from '../../_services/member.service';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
+import { Supplement } from '../../_models/supplement';
+import { SupplementOrder } from '../../_models/SupplementOrder';
 
 @Component({
   selector: 'app-member-detail',
   standalone: true,
-  imports: [DatePipe,NgIf, NgFor, NgClass, CurrencyPipe],
+  imports: [DatePipe,NgIf, NgFor, NgClass, CurrencyPipe, TabsModule, GalleryModule],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })
@@ -20,7 +24,8 @@ export class MemberDetailComponent implements OnInit{
   memberLoginName: string|null = null;
   totalDueAmount :number =0;
   totalPaidAmount :number =0;
-  
+  images: GalleryItem[] =[];
+  supplementOrdered: SupplementOrder[] =[];
   
   ngOnInit(): void {
     this.memberLoginName = this.route.snapshot.paramMap.get('memberLoginName'); //while routeLink we have passed memberLoginName
@@ -34,6 +39,10 @@ export class MemberDetailComponent implements OnInit{
       next: (member) => {
         this.member = member;
         this.memberships = member.memberships || [];
+        member.photos.map(p=>{
+          this.images.push(new ImageItem({src: p.url, thumb: p.url}))
+        });
+        this.supplementOrdered = member.supplementOrders;
         this.calculateAmounts();
       },
       error: (err) => {
