@@ -39,5 +39,10 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
             MemberResponseDTO memberResponseDTO = await _memberService.CreateMember(requestDTO);
             return Ok(memberResponseDTO);
         }
+        [HttpDelete]
+        public async Task<ActionResult> DeleteMember(string memberLoginName)
+        {
+            return Ok(true);
+        }
     }
 }
