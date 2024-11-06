@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <!-- Member Details Card -->
+  <div class="card shadow-lg mb-5">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Member Details</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Member Login Name:</strong> {{ member?.memberLoginName }}</p>
+          <p><strong>First Name:</strong> {{ member?.firstName }}</p>
+          <p><strong>Last Name:</strong> {{ member?.lastName }}</p>
+          <p><strong>Phone Number:</strong> {{ member?.phoneNumber }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Email:</strong> {{ member?.email }}</p>
+          <p><strong>Date of Birth:</strong> {{ member?.dateOfBirth | date }}</p>
+          <p><strong>Address:</strong> {{ member?.address }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Membership Summary -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="text-secondary">Membership Summary</h4>
+    <div>
+      <span class="badge bg-success fs-5 p-2">Total Paid Amount: {{ totalPaidAmount | currency: 'INR' }}</span>
+      <span class="badge bg-danger fs-5 p-2">Total Due Amount: {{ totalDueAmount | currency: 'INR' }}</span>
+    </div>
+  </div>
+
+  <!-- Memberships Table -->
+  <div class="card shadow-lg">
+    <div class="card-header bg-secondary text-white">
+      <h4 class="mb-0">Memberships</h4>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th>Membership Type</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Paid Amount</th>
+            <th>Due Amount</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let membership of memberships" [ngClass]="{ 'table-success': membership.isMembershipActive, 'table-danger': !membership.isMembershipActive }">
+            <td>{{ getMembershipType(membership.membershipType) }}</td>
+            <td>
+              <span [ngClass]="{ 'badge bg-success': membership.isMembershipActive, 'badge bg-danger': !membership.isMembershipActive }">
+                {{ membership.isMembershipActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>{{ membership.membershipStartDate | date }}</td>
+            <td>{{ membership.membershipEndDate | date }}</td>
+            <td>{{ membership.paidAmount | currency: 'INR' }}</td>
+            <td>{{ membership.dueAmount | currency: 'INR' }}</td>
+            <td>{{ membership.membershipAmount | currency: 'INR'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

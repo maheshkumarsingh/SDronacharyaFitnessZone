@@ -1,0 +1,13 @@
+footer {
+    background-color: #343a40; /* Darker shade for footer */
+    color: #ffffff; /* White text color */
+  }
+  
+  footer a {
+    color: #ffffff; /* White link color */
+  }
+  
+  footer a:hover {
+    text-decoration: underline; /* Underline links on hover */
+  }
+  

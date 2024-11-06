@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <!-- Hero Section -->
+  <section class="dashboard-hero text-center mb-5">
+    <img
+      src="/assets/images/gym-body.png"
+      alt="Dashboard Overview"
+      class="img-fluid rounded"
+    />
+  </section>
+
+  <!-- Membership Plans Section -->
+  <section class="membership-plans">
+    <div class="text-center mb-4">
+      <h2>Choose Your Membership Plan</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-3" *ngFor="let plan of memberships">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <h3 class="card-title">
+              <i class="fas"></i> {{ plan.name }}
+            </h3>
+            <p>Access for {{ plan.duration }}</p>
+            <p class="price fw-bold fs-4">{{ plan.price | currency:'INR':'symbol':'1.0-0' }}</p>
+            <button class="btn btn-primary w-100">
+              <i class="fas fa-check-circle"></i> Select Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Welcome {{accountService.currentMember()?.memberLoginName}}</h2>
+    <div>
+      <a class="btn btn-primary" style="margin-right: 10px;" [routerLink]="['/member-create']">New Member</a>
+      <a class="btn btn-secondary" [routerLink]="['/report']">Report</a>
+    </div>
+  </div>
+<div>
+    <app-members-list></app-members-list>
+</div>

@@ -1,0 +1,15 @@
+/* member-table.component.css */
+.active-plan {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green text */
+  padding: 5px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.inactive-plan {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Dark red text */
+  padding: 5px;
+  border-radius: 4px;
+}

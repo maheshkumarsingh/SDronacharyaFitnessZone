@@ -1,0 +1,82 @@
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="container mt-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label for="firstName" class="form-label">First Name</label>
+        <input formControlName="firstName" type="text" id="firstName" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="middleName" class="form-label">Middle Name</label>
+        <input formControlName="middleName" type="text" id="middleName" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input formControlName="lastName" type="text" id="lastName" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+        <input formControlName="dateOfBirth" type="date" id="dateOfBirth" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="gender" class="form-label">Gender</label>
+        <select formControlName="gender" id="gender" class="form-select">
+          <option value="0">Male</option>
+          <option value="1">Female</option>
+          <option value="2">Other</option>
+        </select>
+      </div>
+  
+      <div class="col-md-4">
+        <label for="email" class="form-label">Email</label>
+        <input formControlName="email" type="email" id="email" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="password" class="form-label">Password</label>
+        <input formControlName="password" type="password" id="password" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input formControlName="phoneNumber" type="text" id="phoneNumber" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="alternatePhoneNumber" class="form-label">Alternate Phone Number</label>
+        <input formControlName="alternatePhoneNumber" type="text" id="alternatePhoneNumber" class="form-control" />
+      </div>
+  
+      <div class="col-md-12">
+        <label for="address" class="form-label">Address</label>
+        <input formControlName="address" type="text" id="address" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="bloodGroup" class="form-label">Blood Group</label>
+        <input formControlName="bloodGroup" type="text" id="bloodGroup" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="joiningDate" class="form-label">Joining Date</label>
+        <input formControlName="joiningDate" type="date" id="joiningDate" class="form-control" />
+      </div>
+  
+      <div class="col-md-4">
+        <label for="isOldmember" class="form-check-label">Is Old Member</label>
+        <input formControlName="isOldmember" type="checkbox" id="isOldmember" class="form-check-input ms-2" />
+      </div>
+  
+      <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </div>
+    </div>
+  </form>
+  

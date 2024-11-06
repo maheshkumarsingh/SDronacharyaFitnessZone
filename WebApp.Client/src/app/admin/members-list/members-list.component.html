@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h5>Members</h5>
+</div>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone Number</th>
+      <th>Plan</th>
+      <th>Active</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Amount</th>
+      <th>Paid Amount</th>
+      <th>Due Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let member of members"
+      [routerLink]="['/member-detail', member.memberLoginName]"
+      style="cursor: pointer"
+    >
+      <td><i class="fa fa-user"></i></td>
+      <td>{{ member.firstName }}</td>
+      <td>{{ member.lastName }}</td>
+      <td>{{ member.phoneNumber }}</td>
+      <ng-container
+        *ngIf="
+          getLatestMembership(member.memberships) as latestMembership;
+          else noMembership
+        "
+      >
+        <td>{{ getMembershipType(latestMembership.membershipType) }}</td>
+        <td
+          [ngClass]="{
+            'active-plan': latestMembership.isMembershipActive,
+            'inactive-plan': !latestMembership.isMembershipActive
+          }"
+        >
+          {{ latestMembership.isMembershipActive ? "Yes" : "No" }}
+        </td>
+        <td>{{ latestMembership.membershipStartDate }}</td>
+        <td>{{ latestMembership.membershipEndDate }}</td>
+        <td>{{ latestMembership.membershipAmount }}</td>
+        <td>{{ latestMembership.paidAmount }}</td>
+        <td>{{ latestMembership.dueAmount }}</td>
+      </ng-container>
+      <ng-template #noMembership>
+        <td colspan="7">No Membership</td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
