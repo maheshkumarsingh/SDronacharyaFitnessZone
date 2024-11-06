@@ -55,12 +55,6 @@ export class MemberDetailComponent implements OnInit{
       default:
         return 'Unknown';
     }
-
-
-
-
-
-    
   }
   calculateAmounts():void{
     let sumForDue = 0;
