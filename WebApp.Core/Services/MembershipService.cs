@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.RepositoryContracts;
+using WebApp.Core.DTOs;
 
 namespace SDronacharyaFitnessZone.Core.Services
 {
@@ -49,6 +50,23 @@ namespace SDronacharyaFitnessZone.Core.Services
         {
             var memberships = await _membershipRepository.GetMemberMembershipsList(memberLoginId);
             return memberships.Select(x => x.ToMembershipReponseDTO()).ToList();
+        }
+        public async Task<MembershipResponseDTO> GetMembershipById(int id)
+        {
+            var membership = await _membershipRepository.GetMembershipById(id);
+            return membership.ToMembershipReponseDTO();
+        }
+        public async Task<MembershipResponseDTO> UpdateMembership(UpdateMembershipRequestDTO updateMembershipRequestDTO)
+        {
+            Membership membership = new Membership()
+            {
+                Id = updateMembershipRequestDTO.Id,
+                MembershipType = updateMembershipRequestDTO.MembershipType,
+                MembershipStartDate = updateMembershipRequestDTO.MembershipStartDate,
+                PaidAmount = updateMembershipRequestDTO.PaidAmount,
+                Member = await _memberRepository.GetMemberById(updateMembershipRequestDTO.MemberLoginName),
+            };
+            return (await _membershipRepository.UpdateMembership(membership)).ToMembershipReponseDTO();
         }
     }
 }

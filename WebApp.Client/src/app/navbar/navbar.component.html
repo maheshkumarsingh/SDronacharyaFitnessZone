@@ -32,7 +32,7 @@
         <div dropdown class="dropdown">
           <a dropdownToggle class="dropdown-toggle text-light">Welcome {{ accountService.currentMember()?.memberLoginName | titlecase }}</a>
           <div *dropdownMenu class="dropdown-menu">
-            <a class="dropdown-item" routerLink="/">Edit Profile</a>
+            <a class="dropdown-item" [routerLink]="['/member-edit', accountService.currentMember()?.memberLoginName]">Edit Profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" (click)="logout()">Logout</a>
           </div>

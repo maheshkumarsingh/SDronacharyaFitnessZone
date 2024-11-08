@@ -37,5 +37,26 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             await _applicationDBContext.Database.ExecuteSqlRawAsync("EXEC UpdateInactiveMemberships");
             return await _applicationDBContext.Memberships.Where(x => x.Member.MemberLoginName == memberID).ToListAsync();
         }
+        public async Task<Membership> GetMembershipById(int id)
+        {
+            var membership = await _applicationDBContext.Memberships.FirstOrDefaultAsync(m => m.Id == id);
+            if (membership == null)
+                return null;
+            return membership;
+        }
+
+        public async Task<Membership> UpdateMembership(Membership membership)
+        {
+            Membership? membershipReturn = await GetMembershipById(membership.Id);
+            membershipReturn.MembershipStartDate = membership.MembershipStartDate;
+            membershipReturn.MembershipEndDate = membership.MembershipEndDate;
+            membershipReturn.Member = membership.Member;
+            membershipReturn.PaidAmount = membership.PaidAmount;
+            membershipReturn.DueAmount = membership.DueAmount;
+            membershipReturn.IsMembershipActive = membership.IsMembershipActive;
+
+            await _applicationDBContext.SaveChangesAsync();
+            return membershipReturn;
+        }
     }
 }

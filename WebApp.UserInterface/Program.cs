@@ -22,7 +22,7 @@ namespace SDronacharyaFitnessZone.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            //app.UseDeveloperExceptionPage();
+            app.UseDeveloperExceptionPage();
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyHeader()

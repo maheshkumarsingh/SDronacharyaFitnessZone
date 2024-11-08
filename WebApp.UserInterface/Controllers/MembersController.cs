@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SDronacharyaFitnessZone.Core.DTOs;
-using SDronacharyaFitnessZone.Core.ServiceContracts;
 using WebApp.Core.ServiceContracts;
 
 namespace SDronacharyaFitnessZone.UserInterface.Controllers
 {
+    [Authorize]
     public class MembersController : BaseAPIController
     {
         private readonly IMemberService _memberService;
@@ -15,15 +13,12 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         {
             _memberService = memberservice;
         }
-
-        [Authorize]
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<MemberResponseDTO>>> GetAllMembers()
         {
             var members = await _memberService.GetAllMembers();
             return Ok(members);
         }
-        [Authorize]
         [HttpGet("{memberId}")]
         public async Task<IActionResult> GetMemberById(string memberId)
         {
@@ -32,7 +27,6 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
                 return NotFound();
             return Ok(member);
         }
-        [Authorize]
         [HttpPost]
         public async Task<ActionResult<MemberResponseDTO>> CreateMember(AddMemberRequestDTO requestDTO)
         {
@@ -43,6 +37,17 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         public async Task<ActionResult> DeleteMember(string memberLoginName)
         {
             return Ok(true);
+        }
+        [HttpPut]
+        public async Task<ActionResult> UpdateMember(UpdateMemberRequestDTO requestDTO)
+        {
+            var memberResponse = await _memberService.GetMemberById(requestDTO.MemberLoginName);
+            if(memberResponse != null)
+            {
+                var memberResponseDTO = _memberService.UpdateMember(requestDTO);
+                return Ok(memberResponseDTO);
+            }
+            return BadRequest();
         }
     }
 }

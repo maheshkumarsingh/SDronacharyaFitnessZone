@@ -1,11 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities;
+using WebApp.Core.Domain.Entities.Enums;
 using WebApp.Core.Domain.RepositoryContracts;
 using WebApp.Infrastructure.DBContext;
 
@@ -69,17 +72,45 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             return await _dbContext.Members.FirstOrDefaultAsync(x => x.MemberLoginName == member.MemberLoginName);
         }
 
-        public Task<Member> UpdateMember(Member member)
+        public async Task<Member> UpdateMember(Member member)
         {
-            throw new NotImplementedException();
-        }
+            var memberMatching = await GetMemberById(member.MemberLoginName);
+            if (memberMatching == null)
+            {
+                throw new KeyNotFoundException("Member not found.");
+            }
 
+            //// Update only necessary properties
+            //memberMatching.MemberLoginName = member.MemberLoginName;
+            //memberMatching.FirstName = member.FirstName;
+            //memberMatching.MiddleName = member.MiddleName;
+            //memberMatching.LastName = member.LastName;
+            //memberMatching.DateOfBirth = member.DateOfBirth;
+            //memberMatching.Gender = member.Gender;
+            //memberMatching.Email = member.Email;
+            //memberMatching.Password = member.Password;
+            //memberMatching.PasswordSalt = member.PasswordSalt;
+            //memberMatching.PhoneNumber = member.PhoneNumber;
+            //memberMatching.AlternatePhoneNumber = member.AlternatePhoneNumber;
+            //memberMatching.Address = member.Address;
+            //memberMatching.BloodGroup = member.BloodGroup;
+            //memberMatching.JoiningDate = member.JoiningDate;
+            //memberMatching.Memberships = member.Memberships;
+            //memberMatching.Photos = member.Photos;
+            //memberMatching.SupplementOrders = member.SupplementOrders;
+
+            // Update member in the database
+            _dbContext.Members.Update(member);
+            await _dbContext.SaveChangesAsync();
+
+            return memberMatching;
+        }
         private bool CheckLoginPassword(Member member, string loginDTOPassword)
         {
             using var hmac = new HMACSHA512(member.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTOPassword));
-            
-            for(int i=0;i<computedHash.Length;i++)
+
+            for (int i = 0; i < computedHash.Length; i++)
             {
                 if (computedHash[i] != member.Password[i])
                     return false;

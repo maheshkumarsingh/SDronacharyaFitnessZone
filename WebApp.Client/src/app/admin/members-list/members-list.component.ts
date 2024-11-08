@@ -15,24 +15,17 @@ import { MemberService } from '../../_services/member.service';
   styleUrl: './members-list.component.css'
 })
 export class MembersListComponent implements OnInit{
-  private http = inject(HttpClient);
-  members: Member[] = [];
-  private router = inject(Router);
-  private memberService = inject(MemberService);
+  //members: Member[] = [];
+  memberService = inject(MemberService);
   
   ngOnInit(): void {
-    this.fetchMembers();
+    if(this.memberService.members.length === 0)
+      this.fetchMembers();
   }
 
   fetchMembers() {
-    this.memberService.getAllMembers().subscribe({
-      next: members => this.members = members,
-      error: error => console.log(error.error),
-    });
+    this.memberService.getAllMembers();
     console.log('Memers-fetched')
-  }
-  navigateToDetail(memberLoginName: string): void {
-    this.router.navigate(['/member-detail', memberLoginName]);
   }
   getLatestMembership(memberships: Membership[]): Membership | null {
     if (!memberships || memberships.length === 0) {

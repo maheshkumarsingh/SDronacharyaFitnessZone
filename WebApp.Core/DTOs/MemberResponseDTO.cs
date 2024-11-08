@@ -49,7 +49,7 @@ namespace SDronacharyaFitnessZone.Core.DTOs
                 MiddleName = member.MiddleName,
                 LastName = member.LastName,
                 DateOfBirth = member.DateOfBirth,
-                //Age = member.Age,
+                Age = DateTime.Now.Year - member.DateOfBirth.Year,
                 Gender = member.Gender,
                 Email = member.Email,
                 //Password = member.Password,
@@ -58,7 +58,7 @@ namespace SDronacharyaFitnessZone.Core.DTOs
                 Address = member.Address,
                 BloodGroup = member.BloodGroup,
                 JoiningDate = member.JoiningDate,
-                IsOldmember = member.IsOldMember,
+                IsOldmember = (DateTime.Now.Year - member.JoiningDate.Year) > 2
             };
         }
     }

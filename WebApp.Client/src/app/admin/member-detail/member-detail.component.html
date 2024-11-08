@@ -1,12 +1,17 @@
 <div class="container mt-5">
-  <!-- Member Details Card -->
   <div class="col-12">
+    <!-- Header with Edit Profile Link -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Member Profile</h2>
+      <a [routerLink]="['/member-edit', member?.memberLoginName]" class="btn btn-outline-primary">
+        Edit Profile
+      </a>
+    </div>
+
+    <!-- Tabs Section -->
     <tabset class="member-tabset">
       <tab heading="About {{member?.firstName}}">
         <div class="card shadow-lg mb-5">
-          <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Member Details</h3>
-          </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-6">
@@ -14,6 +19,7 @@
                 <p><strong>First Name:</strong> {{ member?.firstName }}</p>
                 <p><strong>Last Name:</strong> {{ member?.lastName }}</p>
                 <p><strong>Phone Number:</strong> {{ member?.phoneNumber }}</p>
+                <p><strong>Age:</strong> {{ member?.age }}</p>
               </div>
               <div class="col-md-6">
                 <p><strong>Email:</strong> {{ member?.email }}</p>
@@ -24,16 +30,16 @@
           </div>
         </div>
       </tab>
-      <tab heading="Edit">
-        <p>Edit Member will go here.</p>
-      </tab>
+
+      <!-- Photos Tab -->
       <tab heading="Photos" #photoTab="tab">
         <ng-container *ngIf="photoTab.active">
           <gallery [items]="images" class="gallery"></gallery>
         </ng-container>
-      </tab>      
+      </tab>
     </tabset>
   </div>
+
   <!-- Membership Summary -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="text-secondary">Membership Summary</h4>
@@ -42,7 +48,7 @@
       <span class="badge bg-danger fs-5 p-2">Total Due Amount: {{ totalDueAmount | currency: 'INR' }}</span>
     </div>
   </div>
-
+  
   <!-- Memberships Table -->
   <div class="card shadow-lg">
     <div class="card-header bg-secondary text-white">

@@ -1,0 +1,135 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <h1>Your profile</h1>
+    </div>
+    <div class="col-8 pb-0">
+        @if(editForm.dirty)
+        {
+        <div class="alert alert-info">
+            <strong>Information: </strong> You have made changes. Any unsaved changes will be lost
+        </div>
+        }
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="/assets/images/user.png" alt="{{member.memberLoginName}}" class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Member Login Name:</strong> {{ member.memberLoginName }}</p>
+                        <p><strong>First Name:</strong> {{ member.firstName }}</p>
+                        <p><strong>Last Name:</strong> {{ member.lastName }}</p>
+                        <p><strong>Phone Number:</strong> {{ member.phoneNumber }}</p>
+                        <p><strong>Age:</strong> {{ member.age }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Email:</strong> {{ member.email }}</p>
+                        <p><strong>Date of Birth:</strong> {{ member.dateOfBirth | date }}</p>
+                        <p><strong>Address:</strong> {{ member.address }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button [disabled]="!editForm.dirty"
+                form="editForm" type="submit" class="btn btn-success w-100">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading='About {{member.memberLoginName}}'>
+                <form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input [(ngModel)]="member.firstName" type="text" name="firstName"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="middleName" class="form-label">Middle Name</label>
+                                <input [(ngModel)]="member.middleName" type="text" name="middleName"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input [(ngModel)]="member.lastName" type="text" name="lastName" class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                                <input [(ngModel)]="member.dateOfBirth" type="date" name="dateOfBirth"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select [(ngModel)]="member.gender" name="gender" class="form-select">
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                    <option value="2">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input [(ngModel)]="member.email" type="email" name="email" class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="password" class="form-label">Password</label>
+                                <input [(ngModel)]="member.password" type="password" name="password"
+                                    class="form-control" />
+                            </div>
+                            <div class="col-md-12">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" name="confirmPassword"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="col-md-12">
+                                <label for="phoneNumber" class="form-label">Phone Number</label>
+                                <input [(ngModel)]="member.phoneNumber" type="text" name="phoneNumber"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="alternatePhoneNumber" class="form-label">Alternate Phone Number</label>
+                                <input [(ngModel)]="member.alternatePhoneNumber" type="text" name="alternatePhoneNumber"
+                                    class="form-control" />
+                            </div>
+                            <div class="col-md-12">
+                                <label for="address" class="form-label">Address</label>
+                                <input [(ngModel)]="member.address" type="text" name="address" class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="bloodGroup" class="form-label">Blood Group</label>
+                                <input [(ngModel)]="member.bloodGroup" type="text" name="bloodGroup"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="joiningDate" class="form-label">Joining Date</label>
+                                <input [(ngModel)]="member.joiningDate" type="date" name="joiningDate"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="isOldmember" class="form-check-label">Is Old Member</label>
+                                <input [(ngModel)]="member.isOldmember" type="checkbox" name="isOldmember"
+                                    class="form-check-input ms-2" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <tab heading='Edit Photos'>
+            </tab>
+        </tabset>
+    </div>
+</div>

@@ -31,5 +31,16 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         {
             return Ok(await _membershipService.GetMemberMembershipsList(memberLoginId));
         }
+        [HttpPut]
+        public async Task<ActionResult<MembershipResponseDTO>> UpdateMembership(UpdateMembershipRequestDTO update)
+        {
+            var membershipResponseDTO = await _membershipService.GetMembershipById(update.Id);
+            if (membershipResponseDTO != null)
+            {
+                membershipResponseDTO = await _membershipService.UpdateMembership(update);
+                return Ok(membershipResponseDTO);
+            }
+            return BadRequest();
+        }
     }
 }

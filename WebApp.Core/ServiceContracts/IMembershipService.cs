@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities;
+using WebApp.Core.DTOs;
 
 namespace SDronacharyaFitnessZone.Core.ServiceContracts
 {
@@ -14,6 +15,8 @@ namespace SDronacharyaFitnessZone.Core.ServiceContracts
         public Task<MembershipResponseDTO> CreateMembership(AddMembershipRequestDTO addMembershipRequestDTO);
         public Task<IList<MembershipResponseDTO>> GetMemberMembershipsList(string memberLoginId);
         public Task<string> DeleteMembership(string MemberId, int MembershipId);
+        public Task<MembershipResponseDTO> GetMembershipById(int MembershipId);
+        public Task<MembershipResponseDTO> UpdateMembership(UpdateMembershipRequestDTO updateMembershipRequestDTO);
 
     }
 }

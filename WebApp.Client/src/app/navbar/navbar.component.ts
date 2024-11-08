@@ -19,20 +19,17 @@ export class NavbarComponent implements OnInit{
   private router = inject(Router);
   private toastr = inject(ToastrService);
 
-
   ngOnInit(): void {
     
   }
   login()
   {
-    //console.log(this.loginMember);
     this.accountService.login(this.loginMember).subscribe({
       next: _ => {
         if(this.accountService.currentMember()?.memberLoginName==='meet2mahesh17')
         {
           this.router.navigateByUrl('/admin-dashboard');
         }
-        //console.log('Response: '+response);
       },
       error: error => this.toastr.error(error.error)      
     })

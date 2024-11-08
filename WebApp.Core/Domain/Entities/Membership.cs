@@ -10,7 +10,7 @@ namespace WebApp.Core.Domain.Entities
         private DateOnly _membershipStartDate;
         private double _paidAmount;
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Auto-generated
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public MembershipType MembershipType
         {
@@ -24,7 +24,7 @@ namespace WebApp.Core.Domain.Entities
                 SetMembershipAmount();
             }
         }
-        public bool IsMembershipActive { get; set; }
+        public bool IsMembershipActive { get; set; } = false;
 
         public DateOnly MembershipStartDate
         {
@@ -54,7 +54,6 @@ namespace WebApp.Core.Domain.Entities
             }
         }
         public double DueAmount { get; set; }
-        public Member Member { get; set; }
         private void SetMembershipEndDate()
         {
             MembershipEndDate = MembershipType switch
@@ -67,8 +66,8 @@ namespace WebApp.Core.Domain.Entities
         }
         private void SetMembershipStatus()
         {
-            if (MembershipEndDate < DateOnly.FromDateTime(DateTime.Now))
-                IsMembershipActive = false;
+            if (MembershipEndDate > DateOnly.FromDateTime(DateTime.Now))
+                IsMembershipActive = true;
         }
         private void SetMembershipAmount()
         {
@@ -80,5 +79,6 @@ namespace WebApp.Core.Domain.Entities
                 MembershipType.Yearly => 6000,
             };
         }
+        public Member Member { get; set; }
     }
 }

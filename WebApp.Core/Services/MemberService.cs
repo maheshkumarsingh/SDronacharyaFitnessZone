@@ -102,9 +102,12 @@ namespace WebApp.Core.Services
         //    return memberResponseDTO;
         //}
 
-        public Task<MemberResponseDTO> UpdateMember(UpdateMemberRequestDTO memberUpdateRequestDTO)
+        public async Task<MemberResponseDTO> UpdateMember(UpdateMemberRequestDTO memberUpdateRequestDTO)
         {
-            throw new NotImplementedException();
+            Member member = memberUpdateRequestDTO.ToMember();
+            Member memberReturn = await _memberRepository.UpdateMember(member);
+            MemberResponseDTO memberResponseDTO = memberReturn.ToMemberResponseDTO();
+            return memberResponseDTO;
         }
     }
 }

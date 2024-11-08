@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <tr
-      *ngFor="let member of members"
+      *ngFor="let member of memberService.members()"
       [routerLink]="['/member-detail', member.memberLoginName]"
       style="cursor: pointer"
     >

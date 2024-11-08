@@ -6,24 +6,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities.Enums;
+using System.Security.Cryptography;
+using WebApp.Core.Domain.Entities;
 
 namespace SDronacharyaFitnessZone.Core.DTOs
 {
     public class UpdateMemberRequestDTO
     {
         [Required]
+        public string MemberLoginName { get; set; } = null!;
+        [Required]
         [StringLength(50)]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Only alphabets are allowed.")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [StringLength(50)]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Only alphabets are allowed.")]
-        public string MiddleName { get; set; }
+        public string MiddleName { get; set; } = string.Empty;
 
         [Required]
         [StringLength(50)]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Only alphabets are allowed.")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.Date)]
@@ -35,40 +39,49 @@ namespace SDronacharyaFitnessZone.Core.DTOs
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-
+        public string Email { get; set; } = string.Empty;
         [Required]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[^\da-zA-Z]).{8,}$", ErrorMessage = "Password must be at least 8 characters long and contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character.")]
-        public string Password { get; set; }
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage = "Password must be at least 8 characters long and contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character.")]
+        public string Password { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Confirm Password doesnot matches with password")]
-        public string ConfirmPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.PhoneNumber)]
-        public string PhoneNumber { get; set; }
-
-        [Required]
-        [DataType(DataType.PhoneNumber)]
-        public string AlternatePhoneNumber { get; set; }
-        public string Address { get; set; }
-        public string BloodGroup { get; set; }
+        public string AlternatePhoneNumber { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string BloodGroup { get; set; } = string.Empty;
         [DataType(DataType.Date)]
         public DateOnly JoiningDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
-        public bool IsOldmember
+
+        public Member ToMember()
         {
-            get
+            using var hmac = new HMACSHA512();
+            return new Member()
             {
-                if (JoiningDate.Year < DateTime.Now.Year - 2)
-                {
-                    return true;
-                }
-                return false;
-            }
+                FirstName = FirstName,
+                MiddleName = MiddleName,
+                LastName = LastName,
+                MemberLoginName = Email.Split('@')[0],
+                DateOfBirth = DateOfBirth,
+                Gender = Gender,
+                Email = Email,
+                Password = hmac.ComputeHash(Encoding.UTF8.GetBytes(Password)),
+                PasswordSalt = hmac.Key,
+                PhoneNumber = PhoneNumber,
+                AlternatePhoneNumber = AlternatePhoneNumber,
+                Address = Address,
+                BloodGroup = BloodGroup,
+                JoiningDate = JoiningDate,
+                GymId = 1,
+            };
         }
-        public string ImageUrl { get; set; }
     }
 }
