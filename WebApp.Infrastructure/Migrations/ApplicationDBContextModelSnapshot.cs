@@ -235,9 +235,6 @@ namespace WebApp.Infrastructure.Migrations
 
                     b.HasIndex("GymId");
 
-                    b.HasIndex("MemberLoginName")
-                        .IsUnique();
-
                     b.ToTable("Members");
                 });
 

@@ -7,21 +7,28 @@ using SDronacharyaFitnessZone.Core.Services;
 using SDronacharyaFitnessZone.Infrastructure.Repositories;
 using System.Text;
 using WebApp.Core.Domain.RepositoryContracts;
+using WebApp.Core.Helpers;
 using WebApp.Core.ServiceContracts;
 using WebApp.Core.Services;
 using WebApp.Infrastructure.DBContext;
 
-namespace SDronacharyaFitnessZone.UserInterface.StartUpExtensions
+namespace WebApp.UserInterface.Extensions.StartUpExtensions
 {
     public static class ConfigureServiceExtension
     {
-        public static void ConfigureService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection ConfigureService(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<ApplicationDBContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("SDronacharyaDBConnectionString"));
+            });
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IMembershipService, MembershipService>();
             services.AddScoped<IMemberRepository, MemberRepository>();
             services.AddScoped<IMembershipRepository, MembershipRepository>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IPhotoService, PhotoService>();
+            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -29,15 +36,16 @@ namespace SDronacharyaFitnessZone.UserInterface.StartUpExtensions
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey     (Encoding.UTF8.GetBytes(tokenKey)),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey)),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                     };
                 });
-            services.AddDbContext<ApplicationDBContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("SDronacharyaDBConnectionString"));
-            });
+            services.AddCors();
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+            return services;
         }
     }
 }

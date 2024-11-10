@@ -12,8 +12,8 @@ using WebApp.Infrastructure.DBContext;
 namespace WebApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241105123409_SeperateMembershipAndMember")]
-    partial class SeperateMembershipAndMember
+    [Migration("20241110173406_InitialDBSetup")]
+    partial class InitialDBSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -237,9 +237,6 @@ namespace WebApp.Infrastructure.Migrations
                     b.HasIndex("Gender");
 
                     b.HasIndex("GymId");
-
-                    b.HasIndex("MemberLoginName")
-                        .IsUnique();
 
                     b.ToTable("Members");
                 });

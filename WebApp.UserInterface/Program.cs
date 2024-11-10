@@ -1,5 +1,4 @@
-
-using SDronacharyaFitnessZone.UserInterface.StartUpExtensions;
+using WebApp.UserInterface.Extensions.StartUpExtensions;
 using WebApp.UserInterface.Middleware;
 
 namespace SDronacharyaFitnessZone.API
@@ -10,10 +9,6 @@ namespace SDronacharyaFitnessZone.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
-
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
             builder.Services.ConfigureService(builder.Configuration);
             var app = builder.Build();
 

@@ -23,6 +23,15 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<Member> AddMemberPhoto(Member member, Photo photo)
+        {
+            member.Photos.Add(photo);
+            int status = await _dbContext.SaveChangesAsync();
+            if (status > 1)
+                return member;
+            return null;
+        }
+
         public async Task<Member> CreateMember(Member member)
         {
             _dbContext.Members.Add(member);
@@ -79,28 +88,26 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             {
                 throw new KeyNotFoundException("Member not found.");
             }
-
-            //// Update only necessary properties
             //memberMatching.MemberLoginName = member.MemberLoginName;
-            //memberMatching.FirstName = member.FirstName;
-            //memberMatching.MiddleName = member.MiddleName;
-            //memberMatching.LastName = member.LastName;
-            //memberMatching.DateOfBirth = member.DateOfBirth;
-            //memberMatching.Gender = member.Gender;
+            memberMatching.FirstName = member.FirstName;
+            memberMatching.MiddleName = member.MiddleName;
+            memberMatching.LastName = member.LastName;
+            memberMatching.DateOfBirth = member.DateOfBirth;
+            memberMatching.Gender = member.Gender;
             //memberMatching.Email = member.Email;
-            //memberMatching.Password = member.Password;
-            //memberMatching.PasswordSalt = member.PasswordSalt;
-            //memberMatching.PhoneNumber = member.PhoneNumber;
-            //memberMatching.AlternatePhoneNumber = member.AlternatePhoneNumber;
-            //memberMatching.Address = member.Address;
-            //memberMatching.BloodGroup = member.BloodGroup;
-            //memberMatching.JoiningDate = member.JoiningDate;
+            memberMatching.Password = member.Password;
+            memberMatching.PasswordSalt = member.PasswordSalt;
+            memberMatching.PhoneNumber = member.PhoneNumber;
+            memberMatching.AlternatePhoneNumber = member.AlternatePhoneNumber;
+            memberMatching.Address = member.Address;
+            memberMatching.BloodGroup = member.BloodGroup;
+            memberMatching.JoiningDate = member.JoiningDate;
             //memberMatching.Memberships = member.Memberships;
             //memberMatching.Photos = member.Photos;
             //memberMatching.SupplementOrders = member.SupplementOrders;
 
             // Update member in the database
-            _dbContext.Members.Update(member);
+            //_dbContext.Members.Update(memberMatching);
             await _dbContext.SaveChangesAsync();
 
             return memberMatching;

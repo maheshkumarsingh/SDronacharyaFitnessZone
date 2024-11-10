@@ -78,29 +78,6 @@ namespace WebApp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Supplements",
-                columns: table => new
-                {
-                    SupplementId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GymId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Supplements", x => x.SupplementId);
-                    table.ForeignKey(
-                        name: "FK_Supplements_Gyms_GymId",
-                        column: x => x.GymId,
-                        principalTable: "Gyms",
-                        principalColumn: "GymId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Members",
                 columns: table => new
                 {
@@ -113,7 +90,6 @@ namespace WebApp.Infrastructure.Migrations
                     DateOfBirth = table.Column<DateOnly>(type: "date", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MembershipType = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -121,8 +97,7 @@ namespace WebApp.Infrastructure.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BloodGroup = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     JoiningDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    GymId = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    GymId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,9 +114,48 @@ namespace WebApp.Infrastructure.Migrations
                         principalTable: "gender",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Supplements",
+                columns: table => new
+                {
+                    SupplementId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Weight = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GymId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supplements", x => x.SupplementId);
                     table.ForeignKey(
-                        name: "FK_Members_membership_type_MembershipType",
-                        column: x => x.MembershipType,
+                        name: "FK_Supplements_Gyms_GymId",
+                        column: x => x.GymId,
+                        principalTable: "Gyms",
+                        principalColumn: "GymId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MembershipPlans",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MembershipTypeId = table.Column<int>(type: "int", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MembershipPlans", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MembershipPlans_membership_type_MembershipTypeId",
+                        column: x => x.MembershipTypeId,
                         principalTable: "membership_type",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -176,6 +190,27 @@ namespace WebApp.Infrastructure.Migrations
                         principalTable: "membership_type",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Photos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsMain = table.Column<bool>(type: "bit", nullable: false),
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MemberLoginName = table.Column<string>(type: "nvarchar(50)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Photos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Photos_Members_MemberLoginName",
+                        column: x => x.MemberLoginName,
+                        principalTable: "Members",
+                        principalColumn: "MemberLoginName");
                 });
 
             migrationBuilder.CreateTable(
@@ -250,22 +285,16 @@ namespace WebApp.Infrastructure.Migrations
                 column: "GymId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Members_MemberLoginName",
-                table: "Members",
-                column: "MemberLoginName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Members_MembershipType",
-                table: "Members",
-                column: "MembershipType");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_membership_type_Name",
                 table: "membership_type",
                 column: "Name",
                 unique: true,
                 filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MembershipPlans_MembershipTypeId",
+                table: "MembershipPlans",
+                column: "MembershipTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Memberships_MemberLoginName",
@@ -276,6 +305,11 @@ namespace WebApp.Infrastructure.Migrations
                 name: "IX_Memberships_MembershipType",
                 table: "Memberships",
                 column: "MembershipType");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Photos_MemberLoginName",
+                table: "Photos",
+                column: "MemberLoginName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SupplementOrders_MemberLoginName",
@@ -300,10 +334,19 @@ namespace WebApp.Infrastructure.Migrations
                 name: "Maintenances");
 
             migrationBuilder.DropTable(
+                name: "MembershipPlans");
+
+            migrationBuilder.DropTable(
                 name: "Memberships");
 
             migrationBuilder.DropTable(
+                name: "Photos");
+
+            migrationBuilder.DropTable(
                 name: "SupplementOrders");
+
+            migrationBuilder.DropTable(
+                name: "membership_type");
 
             migrationBuilder.DropTable(
                 name: "Members");
@@ -313,9 +356,6 @@ namespace WebApp.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "gender");
-
-            migrationBuilder.DropTable(
-                name: "membership_type");
 
             migrationBuilder.DropTable(
                 name: "Gyms");

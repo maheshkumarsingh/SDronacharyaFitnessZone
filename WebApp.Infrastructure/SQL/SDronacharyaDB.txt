@@ -1,21 +1,4 @@
-{
-  "firstName": "Rakesh",
-  "middleName": "Kumar",
-  "lastName": "Singh",
-  "dateOfBirth": "1999-05-07",
-  "gender": 0,
-  "email": "meet2mahesh17@gmail.com",
-  "password": "Mahesh@123",
-  "confirmPassword": "Mahesh@123",
-  "phoneNumber": "9525958755",
-  "alternatePhoneNumber": "7992287591",
-  "address": "Harina",
-  "bloodGroup": "A+",
-  "membershipType": 2,
-  "joiningDate": "2022-09-25",
-  "membershipStartDate": "2024-11-03"
-}
-
+begin tran
 select * from gender;
 select * from Gyms;
 select * from Maintenances;
@@ -27,13 +10,23 @@ select * from Photos;
 select * from SupplementOrders;
 select * from Supplements;
 
-INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (0, 1, 500  , 'fa-calendar-day');
-INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (1, 3, 1500 , 'fa-calendar-alt');
-INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (2, 6, 3000 , 'fa-calendar-check');
-INSERT INTO MembershipPlans (MembershipTypeId, Duration, Price, Icon) VALUES (3, 12,6000 , 'fa-calendar');
-
 USE [SDronacharyaDB]
 GO
+DBCC CHECKIDENT ('Gyms', RESEED, 0);
+DBCC CHECKIDENT ('Memberships', RESEED, 0);
+DBCC CHECKIDENT ('MembershipPlans', RESEED, 0);
+DBCC CHECKIDENT ('Supplements', RESEED, 0);
+DBCC CHECKIDENT ('SupplementOrders', RESEED, 0);
+DBCC CHECKIDENT ('Members', RESEED, 0);
+DBCC CHECKIDENT ('Photos', RESEED, 0);
+
+delete from Gyms;
+delete from Members;
+delete from Memberships;
+delete from MembershipPlans;
+delete from Supplements;
+delete from SupplementOrders;
+delete from Photos;
 
 INSERT INTO [dbo].[Gyms]
            ([GymName]
@@ -48,14 +41,60 @@ INSERT INTO [dbo].[Gyms]
 		   'Harina',
 		   '9525958755')
 GO
-SELECT TOP (1000) [Id]
-      ,[Url]
-      ,[IsMain]
-      ,[PublicId]
-      ,[MemberLoginName]
-  FROM [SDronacharyaDB].[dbo].[Photos]
+INSERT INTO Members (
+    MemberLoginName, FirstName, MiddleName, LastName, DateOfBirth, Gender,
+    Email, Password, PasswordSalt, PhoneNumber, AlternatePhoneNumber, Address,
+    BloodGroup, JoiningDate, GymId
+) VALUES
+('akshay.patil', 'Akshay', 'Dodamani', 'Patil', '2000-12-12', 0, 'akshay.patil@example.com',
+ 0x922E330879E300FA49D5F0F1489448E68CE99CFC501F6F69CAD2FDC90044F3BC0C71449931584CDA875711FDDDF8654F8A8B3890588AA71A1B090C2A0502E35A,
+ 0xD8E096CAF49808114A8CD6385CF06E66CE661F7629297C43E2B254B8424C72F6DEA69FEB666E6C40531A52756DA695C1969C0A660D0ACEAC5E1473FC43C97F092DD09F52BC8BBA38A44ADA7EB116EA61EA114DCB29E1D5092A5A990749556F4A56E8700C898C06FC6E8BBE742E1CBEC492035CB0413F15169C2AE6C8E83B1BEB,
+ '123456789', '987654321', 'Harina', 'O+', '2024-01-01', 1),
+ 
+('aman.singh', 'Aman', 'Kumar', 'Singh', '2000-10-30', 0, 'aman.singh@example.com',
+ 0x82F4052755620B5200AFD97BFDC509677F6DBF6D82FCDBE5F4A2ED6BA39733F265E9717AF6FBD73D623D6DF8F771F5EEA47616E6A5B9D98601913C45162E5411,
+ 0x9CF405B9B2542B9EEB7468DAA5A86D3D5C60D822796DCF74DBEB91879405650C50D34D49E0BCBAFB3850B85AED3A7A882BB9099C2CF9FE2B3D7532922D505853E828945F3099EC878AD5A4AE6060826820289D94D05659130C9DD2672A21678AEB0AD3ABEEA78B509B9E0E8D490F6DB25650652DFDCC4A4B73227454948A4DCF,
+ '123456789', '987654321', 'Harina', 'O+', '2023-03-01', 1),
+ 
+('amartya.kaushik', 'Amartya', 'Kaushik', 'Tiwari', '1999-03-21', 0, 'amartya.kaushik@example.com',
+ 0x5F5E4B0BF7B1AB4766C70D48B9F1CEE6FEBCC30B7A1C45421F8266FBD08105D6657881E258D93644C0D7180248688469B71FE7D3FFA052192AED28E5DFA8C41B,
+ 0xB137DDC9C0F6D294AE2EBBEB1CC4B62A13425B2F72CE1F69977D4B7EF41B2B816F65C2ECF004956DFC3998B14D85BAD15C81C636CB587FEDB742F87E839532BDF561D31A7A9B1C90CA878E4F85A0358FA6CC06D36E198CD4EA9500255153F936711FFEA5D17D26A6DF13CAB951A0DD4D2009BEBCBCDA5EA9DDDD4166560CA336,
+ '123456789', '987654321', 'Harina', 'O+', '2024-01-01', 1),
+ 
+('anilkumar', 'Anil', 'Kumar', 'Somidi', '2000-11-09', 0, 'anilkumar@example.com',
+ 0xD5275AE3C8172C0FAF2CA1AF6500346D00BCC7708188F42BF61A60F270AA1210939086429528D1AAF37AA1E208F308D50894A6C2B4F57995DC574C668E889567,
+ 0xBE91E03D9FD01300CBBFFE25BC337E71C0F2BDFDC2A1EE9E0B74B8752A907FAE8F9FA22169AFD1E675C23BA1E79609EBE4765F11361F8499F16983A6748750CEB31623ACE6252CBB517F7CDF190E5086235172D9703485342BCB56A6FEA1C3FC3AF46086618F6A44B567115DCFBD23929C530FC80574206AAAEFF43EC249FD5B,
+ '123456789', '987654321', 'Gomoh', 'B+', '2023-11-11', 1),
+ 
+('ankit.ranjan', 'Ankit', '', 'Ranjan', '1999-05-10', 0, 'ankit.ranjan@example.com',
+ 0x3BB70B941325974C626F5C0569EEA1FC386DE8E67F6D98B6370B950C1F5584CAED63446EF9272FE7D4BFD4C32EC3F51A2A2E7F8FDAF374C0C7ED873C5B0C075E,
+ 0x9B0A8D32E1A05A098AB9CE82F5637C6C2144EAD28B0131E344B787F63E6CA91456239C6D8A3A0C318E97B8FA0CE30CEBB85B30FD504A5EB345E697EDF6A0954315EF97EF4D9C32A140BEADCD23FCD1293998794D2B14E905252E18FAFD5029B6ADE962812D74FF22BE805B4A8F3626EAFDAF44E0E94D0EA0E9C20E56E4529446,
+ '123456789', '987654321', 'Harina', 'O+', '2024-03-01', 1),
+ 
+('meet2mahesh17', 'Mahesh', 'Kumar', 'Singh', '1999-05-07', 0, 'meet2mahesh17@gmail.com',
+ 0x44A5D026CFB9A521A3D555A72E3ED2F9918BC4C40E131D1D2CD1FFE1583FAC7226BF6C70008C5A5E1C3988C6F2A206C77FA3D558D68CCBF3387B8A6659CA0934,
+ 0x59A9E06E73300C15B6EA69219CD4D9ADB97D1AF19DEC32AEF2D41B94D17BB0E8E087047CF53121800F27ECB22258F971880F82D9E52A1A43C5E7CAA9E1FC9B732FB78245885B549F9C8A04236DBA7D91315378056571ED7452EACDC8BB3C4723063880E2E1BA38A918B835B374B4BBDC0C9DB09817E3DBB48F3C1EF3734D018D,
+ '9525958755', '7992287591', 'Harina', 'A+', '2024-10-24', 1),
+ 
+('satya.professional1', 'Satya', 'Prakash', 'Singh', '1994-12-25', 0, 'satya.professional1@gmail.com',
+ 0xC5FDF7C14646DB811B9818598E524B21BB97DE00708DBE2011AB45B9DBD54C804FBD71A99B1497B2C02B197568076B77E49CE548CB0C1A7989B337F15B767798,
+ 0x7242246E5997105B64F375BD85C6C712F616BF18D7A3D4AB3F2A2C3E0A234C24AE853F8585EC64A2CFB962693B8F7D0F14323A05DB5CCB0EC191A1B88B830C802A812BF30808E3D0F502C178EC31A1C0BBFCB21015F9E35A2C4AB7B7FBE388A893B8E7EAB9E593897D7194A2FA9C34D30B05F06A4308F9721E714A160E1A5EB4,
+ '9044454464', '7352287591', 'Harina', 'A+', '2024-10-25', 1),
+ ('yadav.shikha505', 'Shikha', '', 'Yadav', '1994-12-25', 0, 'yadav.shikha505@gmail.com',
+ 0xC5FDF7C14646DB811B9818598E524B21BB97DE00708DBE2011AB45B9DBD54C804FBD71A99B1497B2C02B197568076B77E49CE548CB0C1A7989B337F15B767798,
+ 0x7242246E5997105B64F375BD85C6C712F616BF18D7A3D4AB3F2A2C3E0A234C24AE853F8585EC64A2CFB962693B8F7D0F14323A05DB5CCB0EC191A1B88B830C802A812BF30808E3D0F502C178EC31A1C0BBFCB21015F9E35A2C4AB7B7FBE388A893B8E7EAB9E593897D7194A2FA9C34D30B05F06A4308F9721E714A160E1A5EB4,
+ '9044454464', '7352287591', 'Harina', 'A+', '2024-10-25', 1),
+  ('soni.kumari', 'Soni', 'Kumari', 'Singh', '1994-12-25', 0, 'soni.kumari@gmail.com',
+ 0xC5FDF7C14646DB811B9818598E524B21BB97DE00708DBE2011AB45B9DBD54C804FBD71A99B1497B2C02B197568076B77E49CE548CB0C1A7989B337F15B767798,
+ 0x7242246E5997105B64F375BD85C6C712F616BF18D7A3D4AB3F2A2C3E0A234C24AE853F8585EC64A2CFB962693B8F7D0F14323A05DB5CCB0EC191A1B88B830C802A812BF30808E3D0F502C178EC31A1C0BBFCB21015F9E35A2C4AB7B7FBE388A893B8E7EAB9E593897D7194A2FA9C34D30B05F06A4308F9721E714A160E1A5EB4,
+ '9044454464', '7352287591', 'Harina', 'A+', '2024-10-25', 1);
+insert into MembershipPlans (MembershipTypeId, Duration,Price)
+	values (0,1,500),
+		   (1,3,1500),
+		   (2,6,3000),
+		   (3,12,6000);
 
---INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/90.jpg',1,'meet2mahesh17');
+INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/90.jpg',1,'meet2mahesh17');
 INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/87.jpg',1,'satya.professional1');
 INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/57.jpg',1,'akshay.patil');
 INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/3.jpg',1,'aman.singh');
@@ -65,7 +104,7 @@ INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me
 INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/women/11.jpg',1,'yadav.shikha505');
 INSERT INTO Photos (URL, ISMAIN, MemberLoginName) VALUES ('https://randomuser.me/api/portraits/men/9.jpg',1,'amartya.kaushik');
 
-  INSERT INTO Supplements (Name, Description, Price, ImageUrl, GymId, Weight)
+INSERT INTO Supplements (Name, Description, Price, ImageUrl, GymId, Weight)
 	VALUES 
 ('MuscleBlaze Whey Protein', 'High-quality protein for muscle building, available in chocolate flavor.', 1999.00, 'https://example.com/images/muscleblaze_whey.jpg', 1, '1 kg'),
 ('Himalaya Liv.52', 'Supports liver health and improves digestion, popular herbal supplement.', 150.00, 'https://example.com/images/himalaya_liv52.jpg', 1, '100 tablets'),
@@ -103,18 +142,6 @@ VALUES
 
 INSERT INTO Memberships (MembershipType, IsMembershipActive, MembershipStartDate, MembershipEndDate, MembershipAmount, PaidAmount, DueAmount, MemberLoginName)
 VALUES 
-(0, 1, '2024-01-01', '2024-02-01', 500.00, 500.00, 0.00, 'meet2mahesh17'),
-(1, 1, '2024-01-15', '2024-04-15', 1500.00, 1500.00, 0.00, 'satya.professional1'),
-(2, 1, '2024-02-01', '2024-08-01', 3000.00, 2500.00, 500.00, 'akshay.patil'),
-(3, 1, '2024-03-01', '2025-03-01', 6000.00, 6000.00, 0.00, 'aman.singh'),
-(0, 0, '2024-01-01', '2024-02-01', 500.00, 400.00, 100.00, 'ankit.ranjan'),
-(1, 1, '2024-04-01', '2024-07-01', 1500.00, 1500.00, 0.00, 'anilkumar'),
-(2, 1, '2024-05-01', '2024-11-01', 3000.00, 3000.00, 0.00, 'soni.kumari'),
-(3, 0, '2024-02-01', '2025-02-01', 6000.00, 5500.00, 500.00, 'yadav.shikha505'),
-(1, 1, '2024-06-01', '2024-09-01', 1500.00, 1500.00, 0.00, 'amartya.kaushik');
-
-INSERT INTO Memberships (MembershipType, IsMembershipActive, MembershipStartDate, MembershipEndDate, MembershipAmount, PaidAmount, DueAmount, MemberLoginName)
-VALUES 
 (0, 1, '2024-07-01', '2024-08-01', 500.00, 500.00, 0.00, 'meet2mahesh17'),
 (1, 1, '2024-08-15', '2024-11-15', 1500.00, 1500.00, 0.00, 'satya.professional1'),
 (2, 0, '2024-05-01', '2024-11-01', 3000.00, 2500.00, 500.00, 'akshay.patil'),
@@ -133,13 +160,7 @@ VALUES
 (3, 1, '2024-04-01', '2025-04-01', 6000.00, 6000.00, 0.00, 'soni.kumari'),
 (1, 1, '2024-07-15', '2024-10-15', 1500.00, 1500.00, 0.00, 'yadav.shikha505'),
 (2, 1, '2024-03-01', '2024-09-01', 3000.00, 3000.00, 0.00, 'amartya.kaushik');
-
-DBCC CHECKIDENT ('MembershipPlans', RESEED, 0);
-insert into MembershipPlans (MembershipTypeId, Duration,Price)
-	values (0,1,500),
-		   (1,3,1500),
-		   (2,6,3000),
-		   (3,12,6000);
+		   
 INSERT INTO Maintenances (Name, Description, Charge, Date, GymId)
 VALUES
 ('Equipment Repair', 'Treadmill belt replacement', 2500.00, '2024-01-05', 1),
@@ -157,129 +178,17 @@ VALUES
 ('Mirror Replacement', 'Replacement of broken mirror in weight area', 1200.00, '2024-07-10', 1),
 ('Roof Repair', 'Fixing minor leaks in gym roof', 2000.00, '2024-08-01', 1),
 ('Pool Maintenance', 'Cleaning and chemical balancing for pool', 3000.00, '2024-08-20', 1);
-npm install ngx-bootstrap bootstrap font-awesome
 
-          "options": {
-            "ssl": true,
-            "sslCert": "./ssl/localhost.pem",
-            "sslKey": "./ssl/localhost-key.pem"
-          },
+select * from gender;
+select * from Gyms;
+select * from Maintenances;
+select * from Members;
+select * from membership_type;
+select * from MembershipPlans;
+select * from Memberships;
+select * from Photos;
+select * from SupplementOrders;
+select * from Supplements;
 
-
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "src/assets/fonts",
-                "output": "/assets/fonts"
-              }
-            ],
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.min.css",
-              "src/styles.css"
-            ],
-			
-			
-{
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "SDronacharyaFitnessZone.ClientV2": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:application",
-          "options": {
-            "outputPath": "dist/sdronacharya-fitness-zone.client-v2",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "SDronacharyaFitnessZone.ClientV2:build:production"
-            },
-            "development": {
-              "buildTarget": "SDronacharyaFitnessZone.ClientV2:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
-        }
-      }
-    }
-  },
-  "cli": {
-    "analytics": false
-  }
-}
-
-
+rollback
+--commit

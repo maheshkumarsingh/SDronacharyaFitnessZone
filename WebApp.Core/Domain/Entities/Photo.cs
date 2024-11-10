@@ -14,7 +14,6 @@ namespace WebApp.Core.Domain.Entities
         [Required]
         public bool IsMain { get; set; }
         public string? PublicId { get; set; }
-
-        public Member Member { get; set; } = null!;
+        public Member Member { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace WebApp.Core.Domain.RepositoryContracts
         public Task<string> DeleteMember(string memberID);
         public Task<Member> RegisterMember(Member member);
         public Task<Member> LoginMember(string memberLoginName, string passWord);
+        public Task<Member> AddMemberPhoto(Member member, Photo photo);
     }
 }

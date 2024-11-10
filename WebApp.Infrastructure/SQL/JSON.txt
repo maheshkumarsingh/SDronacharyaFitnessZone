@@ -1,0 +1,159 @@
+{
+  "firstName": "Rakesh",
+  "middleName": "Kumar",
+  "lastName": "Singh",
+  "dateOfBirth": "1999-05-07",
+  "gender": 0,
+  "email": "meet2mahesh17@gmail.com",
+  "password": "Mahesh@123",
+  "confirmPassword": "Mahesh@123",
+  "phoneNumber": "9525958755",
+  "alternatePhoneNumber": "7992287591",
+  "address": "Harina",
+  "bloodGroup": "A+",
+  "membershipType": 2,
+  "joiningDate": "2022-09-25",
+  "membershipStartDate": "2024-11-03"
+}
+Update
+{
+  "memberLoginName": "meet2mahesh17",
+  "firstName": "Maheshhh",
+  "middleName": "Kumarr",
+  "lastName": "Singhh",
+  "dateOfBirth": "1999-05-07",
+  "gender": 0,
+  "email": "user@example.com",
+  "password": "Mahesh@1234",
+  "confirmPassword": "Mahesh@1234",
+  "phoneNumber": "123456789",
+  "alternatePhoneNumber": "321456987",
+  "address": "Pune",
+  "bloodGroup": "B+",
+  "joiningDate": "2023-11-08"
+}
+
+npm install ngx-bootstrap bootstrap font-awesome
+
+          "options": {
+            "ssl": true,
+            "sslCert": "./ssl/localhost.pem",
+            "sslKey": "./ssl/localhost-key.pem"
+          },
+
+
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/assets/fonts",
+                "output": "/assets/fonts"
+              }
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "src/styles.css"
+            ],
+			
+			
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "SDronacharyaFitnessZone.ClientV2": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/sdronacharya-fitness-zone.client-v2",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "SDronacharyaFitnessZone.ClientV2:build:production"
+            },
+            "development": {
+              "buildTarget": "SDronacharyaFitnessZone.ClientV2:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

@@ -25,7 +25,7 @@ namespace WebApp.Core.Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, member.MemberLoginName),
+                new(ClaimTypes.NameIdentifier, member.MemberLoginName),
             };
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             var tokenDescriptor = new SecurityTokenDescriptor()

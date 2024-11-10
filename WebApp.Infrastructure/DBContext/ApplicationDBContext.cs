@@ -13,6 +13,7 @@ namespace WebApp.Infrastructure.DBContext
         public DbSet<Supplement> Supplements { get; set; }
         public DbSet<SupplementOrder> SupplementOrders { get; set; }
         public DbSet<MembershipPlan> MembershipPlans { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
         }
@@ -26,9 +27,7 @@ namespace WebApp.Infrastructure.DBContext
                 .Singularize()
                 .UseNumberAsIdentifier());
 
-            modelBuilder.Entity<Member>()
-            .HasIndex(m => m.MemberLoginName)
-            .IsUnique();
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
