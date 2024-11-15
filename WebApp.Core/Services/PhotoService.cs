@@ -62,9 +62,12 @@ namespace WebApp.Core.Services
             return null;
         }
 
-        public async Task<DeletionResult> DeletePhotoAsync(string publicId)
+        public async Task<DeletionResult> DeletePhotoAsync(MemberResponseDTO responseDTO, int photoId)
         {
-            var deleteParam = new DeletionParams(publicId);
+            var member = await _memberRepository.GetMemberById(responseDTO.MemberLoginName);
+            var photo = member.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo == null) return null;
+            var deleteParam = new DeletionParams(photo.PublicId);
             return await _cloudinary.DestroyAsync(deleteParam);
         }
     }

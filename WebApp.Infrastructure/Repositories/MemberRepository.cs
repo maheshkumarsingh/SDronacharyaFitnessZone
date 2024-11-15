@@ -45,6 +45,13 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<bool> DeleteMemberPhoto(Member member, Photo photo)
+        {
+            member.Photos.Remove(photo);
+            int status = await _dbContext.SaveChangesAsync();
+            return status > 0;
+        }
+
         public async Task<IList<Member>> GetAllMembers()
         {
             return await _dbContext.Members
@@ -81,36 +88,18 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             return await _dbContext.Members.FirstOrDefaultAsync(x => x.MemberLoginName == member.MemberLoginName);
         }
 
+        public async Task<bool> SetMainPhotoForMember(Photo photo)
+        {
+            int status = await _dbContext.SaveChangesAsync();
+            return status > 0;
+        }
+
         public async Task<Member> UpdateMember(Member member)
         {
-            var memberMatching = await GetMemberById(member.MemberLoginName);
-            if (memberMatching == null)
-            {
-                throw new KeyNotFoundException("Member not found.");
-            }
-            //memberMatching.MemberLoginName = member.MemberLoginName;
-            memberMatching.FirstName = member.FirstName;
-            memberMatching.MiddleName = member.MiddleName;
-            memberMatching.LastName = member.LastName;
-            memberMatching.DateOfBirth = member.DateOfBirth;
-            memberMatching.Gender = member.Gender;
-            //memberMatching.Email = member.Email;
-            memberMatching.Password = member.Password;
-            memberMatching.PasswordSalt = member.PasswordSalt;
-            memberMatching.PhoneNumber = member.PhoneNumber;
-            memberMatching.AlternatePhoneNumber = member.AlternatePhoneNumber;
-            memberMatching.Address = member.Address;
-            memberMatching.BloodGroup = member.BloodGroup;
-            memberMatching.JoiningDate = member.JoiningDate;
-            //memberMatching.Memberships = member.Memberships;
-            //memberMatching.Photos = member.Photos;
-            //memberMatching.SupplementOrders = member.SupplementOrders;
-
-            // Update member in the database
-            //_dbContext.Members.Update(memberMatching);
-            await _dbContext.SaveChangesAsync();
-
-            return memberMatching;
+            int status = await _dbContext.SaveChangesAsync();
+            if (status > 0)
+                return member;
+            return null;
         }
         private bool CheckLoginPassword(Member member, string loginDTOPassword)
         {

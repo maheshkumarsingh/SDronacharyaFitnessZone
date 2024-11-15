@@ -42,6 +42,15 @@ namespace WebApp.Core.Services
             throw new NotImplementedException();
         }
 
+        public async Task<bool> DeleteMemberPhoto(MemberResponseDTO memberResponseDTO, int photoId)
+        {
+            var member = await _memberRepository.GetMemberById(memberResponseDTO.MemberLoginName);
+            var photo = member.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo == null) return false;
+            var status = await _memberRepository.DeleteMemberPhoto(member, photo);
+            return status;
+        }
+
         public async Task<IList<MemberResponseDTO>> GetAllMembers()
         {
             var members = await _memberRepository.GetAllMembers();
@@ -77,11 +86,29 @@ namespace WebApp.Core.Services
             Member member = await _memberRepository.LoginMember(memberRequestDTO.MemberLoginName, memberRequestDTO.Password);
             if (member != null)
             {
-                MemberResponseDTO dto = member.ToMemberResponseDTO();
-                dto.Token = _tokenService.CreateToken(member);
-                return dto;
+                MemberResponseDTO memberResponseDTO = member.ToMemberResponseDTO();
+                memberResponseDTO.Memberships = member.Memberships!.Select(x => x.ToMembershipReponseDTO()).ToList();
+                memberResponseDTO.Photos = member.Photos.Select(x => x.ToPhotoResponseDTO()).ToList();
+                memberResponseDTO.SupplementOrders = member.SupplementOrders.Select(x => x.ToSupplementResponseDTO()).ToList();
+                memberResponseDTO.Token = _tokenService.CreateToken(member);
+                return memberResponseDTO;
             }
             return null;
+        }
+
+        public async Task<bool> SetMainPhotoForMember(int photoId, MemberResponseDTO memberResponseDTO)
+        {
+            var member = await _memberRepository.GetMemberById(memberResponseDTO.MemberLoginName);
+            if (member == null) return false;
+            var photo = member.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo == null || photo.IsMain) return false;
+            var currentMain = member.Photos.FirstOrDefault(x => x.IsMain);
+            if (currentMain != null)
+            {
+                currentMain.IsMain = false;
+            }
+            photo.IsMain = true;
+            return await _memberRepository.SetMainPhotoForMember(photo);
         }
 
         //public async Task<MemberResponseDTO> RegisterMember(RegisterMemberRequestDTO memberRequestDTO)

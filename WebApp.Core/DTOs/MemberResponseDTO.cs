@@ -29,7 +29,7 @@ namespace SDronacharyaFitnessZone.Core.DTOs
         public string BloodGroup { get; set; }
         public DateOnly JoiningDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public bool IsOldmember { get; set; }
-        //public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
         public IList<MembershipResponseDTO>? Memberships { get; set; } = [];
         public IList<SupplementOrderResponseDTO> SupplementOrders { get; set; } = [];
         public IList<PhotoResponseDTO> Photos { get; set; } = [];
@@ -58,7 +58,8 @@ namespace SDronacharyaFitnessZone.Core.DTOs
                 Address = member.Address,
                 BloodGroup = member.BloodGroup,
                 JoiningDate = member.JoiningDate,
-                IsOldmember = (DateTime.Now.Year - member.JoiningDate.Year) > 2
+                IsOldmember = (DateTime.Now.Year - member.JoiningDate.Year) > 2,
+                ImageUrl = member.Photos.FirstOrDefault(p => p.IsMain)!.Url
             };
         }
     }

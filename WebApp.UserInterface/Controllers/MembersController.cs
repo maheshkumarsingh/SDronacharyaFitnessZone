@@ -78,18 +78,21 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         public async Task<ActionResult> SetMainPhotoForMember(int photoId)
         {
             var memberResponse = await _memberService.GetMemberById(User.GetMemberLoginNameByClaim());
-            if (memberResponse == null) return BadRequest("Could not find user");
-            var photo = memberResponse.Photos.FirstOrDefault(x => x.Id == photoId);
-            if (photo != null || photo.IsMain) return BadRequest("Cannot use as main photo");
-            var currentMain = memberResponse.Photos.FirstOrDefault(x => x.IsMain);
-            if (currentMain != null)
-            {
-                currentMain.IsMain = false;
-            }
-            photo.IsMain = true;
-            if ((await _dbContext.SaveChangesAsync()) > 0)
-                return NoContent();
+            var status = await _memberService.SetMainPhotoForMember(photoId, memberResponse);
+
+            if(status) return NoContent();
             return BadRequest("Fail");
+        }
+        [HttpDelete("delete-photo/{photoId:int}")]
+        public async Task<ActionResult> DeleteMemberPhoto(int photoId)
+        {
+            var memberResponse = await _memberService.GetMemberById(User.GetMemberLoginNameByClaim());
+            var cloudinaryStatus = await _photoService.DeletePhotoAsync(memberResponse, photoId);
+            if (cloudinaryStatus == null) return BadRequest(cloudinaryStatus.Error.Message);
+            var dbStatus = await _memberService.DeleteMemberPhoto(memberResponse, photoId);
+            if (dbStatus)
+                return Ok();
+            return BadRequest("Photo not deleted from DB");
         }
     }
 

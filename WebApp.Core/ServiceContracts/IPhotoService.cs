@@ -13,6 +13,6 @@ namespace WebApp.Core.ServiceContracts
     public interface IPhotoService
     {
         Task<PhotoResponseDTO> AddPhotoAsync(IFormFile formFile, MemberResponseDTO memberResponse);
-        Task<DeletionResult> DeletePhotoAsync(string publicId);
+        Task<DeletionResult> DeletePhotoAsync(MemberResponseDTO photoResponse, int photoId);
     }
 }
