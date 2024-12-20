@@ -3,7 +3,7 @@ import { Photo } from "./photo";
 import { SupplementOrder } from "./SupplementOrder";
 
 export interface Member {
-    id: number;
+    readonly id: number;
     memberLoginName: string;
     firstName: string;
     middleName: string;

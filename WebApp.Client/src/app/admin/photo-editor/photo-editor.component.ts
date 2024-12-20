@@ -15,7 +15,6 @@ import { MemberService } from '../../_services/member.service';
 })
 export class PhotoEditorComponent implements OnInit{
   private accountService = inject(AccountService);
-  private cdr = inject(ChangeDetectorRef);
   private memberService = inject(MemberService);
   member = input.required<Member>();
   uploader?: FileUploader;

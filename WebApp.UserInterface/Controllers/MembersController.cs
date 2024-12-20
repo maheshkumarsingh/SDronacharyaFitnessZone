@@ -56,10 +56,22 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
             var memberResponse = await _memberService.GetMemberById(User.GetMemberLoginNameByClaim());
             if (memberResponse != null)
             {
-                var memberResponseDTO = _memberService.UpdateMember(requestDTO);
-                return Ok(memberResponseDTO);
+                var status = await _memberService.UpdateMember(requestDTO);
+                if(status > 0)
+                return Ok(requestDTO);
             }
-            return BadRequest();
+            return BadRequest("Member cannot be updated. Check fields");
+            //Member member = await _dbContext.Members.FindAsync(requestDTO.MemberLoginName);
+            //member.FirstName = requestDTO.FirstName;
+            //try
+            //{
+            //    await _dbContext.SaveChangesAsync();
+            //}
+            //catch (Exception ex)
+            //{
+            //    return BadRequest(ex.Message);
+            //}
+            //return Ok(requestDTO);
         }
         [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoResponseDTO>> AddMemberPhoto(IFormFile file)

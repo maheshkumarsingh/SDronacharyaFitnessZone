@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Member } from '../_models/member';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, of, Subscription, tap } from 'rxjs';
 import { Photo } from '../_models/photo';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class MemberService {
   private http = inject(HttpClient);
   members = signal<Member[]>([]);
 
-  getAllMembers(){
+  getAllMembers():Subscription{
     return this.http.get<Member[]>(this.baseUrl+'members').subscribe({
       next: members => this.members.set(members),
     });
@@ -34,7 +34,7 @@ export class MemberService {
       })
     )
   }
-  setMemberMainPhoto(photo: Photo){
+  setMemberMainPhoto(photo: Photo):Observable<any>{
     return this.http.put(this.baseUrl+'members/set-main-photo/'+photo.id,{}).pipe(
       tap(() =>{
         this.members.update(member => member.map(m =>{

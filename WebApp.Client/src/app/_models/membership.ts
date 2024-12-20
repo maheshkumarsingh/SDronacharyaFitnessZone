@@ -1,5 +1,5 @@
 export interface Membership {
-    id: number;
+    readonly id: number;
     membershipType: number;
     isMembershipActive: boolean;
     membershipStartDate: string;

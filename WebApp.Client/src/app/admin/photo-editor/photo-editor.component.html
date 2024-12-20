@@ -3,9 +3,7 @@
     <div class="col-2">
         <img src="{{photo.url}}" alt="photo of member" class="img-thumbnail mb-1">
         <div class="text-center">
-            <button class="btn btn-sm me-1" 
-                [disabled]="photo.isMain" 
-                (click)="setMemberMainPhoto(photo)"
+            <button class="btn btn-sm me-1" [disabled]="photo.isMain" (click)="setMemberMainPhoto(photo)"
                 [ngClass]="photo.isMain ? 'btn-success active':'btn-outline-success'">Main</button>
             <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
         </div>
@@ -13,7 +11,7 @@
     }
 </div>
 <!-- ng file upload -->
-<div class="row mt-5" >
+<div class="row mt-5">
     <div class="col-md-3">
         <h3>Add photos</h3>
         <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
@@ -43,7 +41,8 @@
             <div>
                 Queue progress:
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader?.progress + '%' }"></div>
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader?.progress + '%' }">
+                    </div>
                 </div>
             </div>
             <button type="button" class="btn btn-success btn-s" (click)="uploader?.uploadAll()"
@@ -59,7 +58,5 @@
                 <span class="fa fa-trash"></span> Remove all
             </button>
         </div>
-
     </div>
-
 </div>

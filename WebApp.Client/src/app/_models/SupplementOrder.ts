@@ -1,5 +1,5 @@
 export interface SupplementOrder {
-  supplementOrderId: number;
+  readonly supplementOrderId: number;
   orderDate: string;
   quantity: number;
   totalPrice: number;

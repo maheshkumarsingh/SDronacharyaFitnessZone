@@ -1,5 +1,5 @@
 export interface Photo{
-    id:number,
+    readonly id:number,
     url:string,
     isMain:boolean
 }

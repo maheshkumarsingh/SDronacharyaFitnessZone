@@ -44,10 +44,10 @@ namespace SDronacharyaFitnessZone.Core.DTOs
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage = "Password must be at least 8 characters long and contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character.")]
         public string Password { get; set; } = string.Empty;
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Confirm Password doesnot matches with password")]
-        public string? ConfirmPassword { get; set; }
+        //[Required]
+        //[DataType(DataType.Password)]
+        //[Compare("Password", ErrorMessage = "Confirm Password doesnot matches with password")]
+        //public string? ConfirmPassword { get; set; }
 
         [Required]
         [DataType(DataType.PhoneNumber)]

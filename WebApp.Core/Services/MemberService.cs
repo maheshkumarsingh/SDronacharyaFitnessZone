@@ -1,4 +1,5 @@
-﻿using SDronacharyaFitnessZone.Core.Domain.RepositoryContracts;
+﻿using CloudinaryDotNet.Actions;
+using SDronacharyaFitnessZone.Core.Domain.RepositoryContracts;
 using SDronacharyaFitnessZone.Core.DTOs;
 using SDronacharyaFitnessZone.Core.ServiceContracts;
 using System;
@@ -129,12 +130,11 @@ namespace WebApp.Core.Services
         //    return memberResponseDTO;
         //}
 
-        public async Task<MemberResponseDTO> UpdateMember(UpdateMemberRequestDTO memberUpdateRequestDTO)
+        public async Task<int> UpdateMember(UpdateMemberRequestDTO memberUpdateRequestDTO)
         {
             Member member = memberUpdateRequestDTO.ToMember();
-            Member memberReturn = await _memberRepository.UpdateMember(member);
-            MemberResponseDTO memberResponseDTO = memberReturn.ToMemberResponseDTO();
-            return memberResponseDTO;
+            var status = await _memberRepository.UpdateMember(member);
+            return status;
         }
     }
 }

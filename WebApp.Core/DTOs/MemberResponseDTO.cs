@@ -52,7 +52,7 @@ namespace SDronacharyaFitnessZone.Core.DTOs
                 Age = DateTime.Now.Year - member.DateOfBirth.Year,
                 Gender = member.Gender,
                 Email = member.Email,
-                //Password = member.Password,
+                Password = GetMemberPassword(member.Password),
                 PhoneNumber = member.PhoneNumber,
                 AlternatePhoneNumber = member.AlternatePhoneNumber,
                 Address = member.Address,
@@ -61,6 +61,16 @@ namespace SDronacharyaFitnessZone.Core.DTOs
                 IsOldmember = (DateTime.Now.Year - member.JoiningDate.Year) > 2,
                 ImageUrl = member.Photos.FirstOrDefault(p => p.IsMain)!.Url
             };
+        }
+        public static string GetMemberPassword(byte[] computedHash)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in computedHash)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+
+            return sb.ToString();
         }
     }
 }

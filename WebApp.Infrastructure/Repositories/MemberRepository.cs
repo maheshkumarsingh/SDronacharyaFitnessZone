@@ -94,12 +94,21 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             return status > 0;
         }
 
-        public async Task<Member> UpdateMember(Member member)
+        public async Task<int> UpdateMember(Member updateMember)
         {
+            Member member = await _dbContext.Members.FindAsync(updateMember.MemberLoginName);
+            member.FirstName = updateMember.FirstName;
+            member.MiddleName = updateMember.MiddleName;
+            member.LastName = updateMember.LastName;
+            member.PhoneNumber = updateMember.PhoneNumber;
+            member.DateOfBirth = updateMember.DateOfBirth;
+            member.Address = updateMember.Address;
+            member.AlternatePhoneNumber = updateMember.AlternatePhoneNumber;
+            member.BloodGroup = updateMember.BloodGroup;
+            member.JoiningDate = updateMember.JoiningDate;
             int status = await _dbContext.SaveChangesAsync();
-            if (status > 0)
-                return member;
-            return null;
+            return status;
+
         }
         private bool CheckLoginPassword(Member member, string loginDTOPassword)
         {

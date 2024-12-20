@@ -13,7 +13,7 @@ namespace WebApp.Core.ServiceContracts
         public Task<MemberResponseDTO> GetMemberById(string memberID);
         public Task<IList<MemberResponseDTO>> GetAllMembers();
         public Task<MemberResponseDTO> CreateMember(AddMemberRequestDTO memberAddRequestDTO);
-        public Task<MemberResponseDTO> UpdateMember(UpdateMemberRequestDTO memberUpdateRequestDTO);
+        public Task<int> UpdateMember(UpdateMemberRequestDTO memberUpdateRequestDTO);
         public Task<string> DeleteMember(string memberID);
         //public Task<MemberResponseDTO> RegisterMember(RegisterMemberRequestDTO memberRequestDTO);
         public Task<MemberResponseDTO> LoginMember(LoginMemberDTO memberRequestDTO);

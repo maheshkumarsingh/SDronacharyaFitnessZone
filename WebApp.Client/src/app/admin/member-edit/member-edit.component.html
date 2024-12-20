@@ -80,12 +80,20 @@
 
                             <div class="col-md-12">
                                 <label for="password" class="form-label">Password</label>
-                                <input [(ngModel)]="member.password" type="password" name="password"
-                                    class="form-control" />
+                                <div class="input-group">
+                                    <input [(ngModel)]="member.password"
+                                        [type]="passwordVisibility ? 'text' : 'password'" name="password"
+                                        class="form-control" />
+                                    <span class="input-group-text" (click)="togglePasswordVisibility()">
+                                        <i [class]="passwordVisibility ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+                                    </span>
+                                </div>
                             </div>
+
                             <div class="col-md-12">
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                <input type="password" name="confirmPassword" class="form-control" />
+                                <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword"
+                                    class="form-control" />
                             </div>
                         </div>
                         <div class="col-md-6">

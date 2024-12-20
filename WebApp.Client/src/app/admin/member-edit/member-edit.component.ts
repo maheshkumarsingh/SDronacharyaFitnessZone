@@ -17,9 +17,8 @@ import { PhotoEditorComponent } from "../photo-editor/photo-editor.component";
 })
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm?: NgForm;
-  @HostListener('window:beforeunload', ['$event']) notify($event:any) {
-    if(this.editForm?.dirty)
-    {
+  @HostListener('window:beforeunload', ['$event']) notify($event: any) {
+    if (this.editForm?.dirty) {
       $event.returnValue = true;
     }
   }
@@ -27,23 +26,32 @@ export class MemberEditComponent implements OnInit {
   private memberService = inject(MemberService);
   private toastr = inject(ToastrService);
   member?: Member;
-  photoUrl:string|undefined;
+  photoUrl: string | undefined;
+  confirmPassword: string | undefined;
+  passwordVisibility: boolean = false;
 
   ngOnInit(): void {
     this.loadMemberToEdit();
   }
   updateMember() {
-    console.log('update member');
-    this.memberService.updateMember(this.member).subscribe({
-      next: (response) => {
+    if (this.member?.password === this.confirmPassword) {
+      console.log('Updating Member');
+      //console.log(this.member?.password + ' And '+ this.confirmPassword);
+      this.memberService.updateMember(this.member).subscribe({
+        next: (response) => {
           this.member = response
-      },
-      error: (err)=>{
-        console.error('Error updating member details:', err);
-      }
-    });
-    this.toastr.success('Profile update successfully');
-    this.editForm?.reset(this.member);
+          this.toastr.success('Profile update successfully');
+        },
+        error: (err) => {
+          console.error('Error updating member details:', err);
+        }
+      });
+      this.editForm?.reset(this.member);
+    }
+    else {
+      console.log(this.member?.password + ' And ' + this.confirmPassword);
+      this.toastr.error('Profile not updated. Confirm Password doesnot matches with Password');
+    }
   }
 
   loadMemberToEdit() {
@@ -53,16 +61,18 @@ export class MemberEditComponent implements OnInit {
     this.memberService.getMemberByMemberLoginName(memberLoginName).subscribe({
       next: (member) => {
         this.member = member,
-        this.photoUrl= this.member.photos.find(p => p.isMain)?.url;
-          console.log('photoUrl'+this.photoUrl);
+          this.photoUrl = this.member.photos.find(p => p.isMain)?.url;
+        console.log('photoUrl' + this.photoUrl);
       },
       error: (err) => {
         console.error('Error fetching member details:', err);
       }
     })
   }
-  onMemberChange(event:Member)
-  {
+  onMemberChange(event: Member) {
     this.member = event;
+  }
+  togglePasswordVisibility() {
+    this.passwordVisibility = !this.passwordVisibility;
   }
 }
