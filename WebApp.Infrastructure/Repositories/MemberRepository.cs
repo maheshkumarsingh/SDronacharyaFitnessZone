@@ -47,7 +47,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
 
         public async Task<bool> DeleteMemberPhoto(Member member, Photo photo)
         {
-            member.Photos.Remove(photo);
+            _dbContext.Photos.Remove(photo);
             int status = await _dbContext.SaveChangesAsync();
             return status > 0;
         }

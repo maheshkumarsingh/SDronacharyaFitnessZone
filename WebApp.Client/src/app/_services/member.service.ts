@@ -35,7 +35,22 @@ export class MemberService {
     )
   }
   setMemberMainPhoto(photo: Photo):Observable<any>{
-    return this.http.put(this.baseUrl+'members/set-main-photo/'+photo.id,{}).pipe(
+    return this.http.put(this.baseUrl+'members/set-main-photo/'+photo.id,{})
+    .pipe(
+      tap(() =>{
+        this.members.update(member => member.map(m =>{
+          if(m.photos.includes(photo)){
+            m.imageUrl = photo.url
+          }
+          return m;
+        }))
+      })
+    )
+  }
+
+  deleteMemberPhoto(photo:Photo):Observable<any>{
+    return this.http.delete(this.baseUrl+'members/delete-photo/'+photo.id)
+    .pipe(
       tap(() =>{
         this.members.update(member => member.map(m =>{
           if(m.photos.includes(photo)){
