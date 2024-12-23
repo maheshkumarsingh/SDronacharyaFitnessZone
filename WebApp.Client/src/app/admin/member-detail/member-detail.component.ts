@@ -8,30 +8,33 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
 import { Supplement } from '../../_models/supplement';
 import { SupplementOrder } from '../../_models/SupplementOrder';
+import { MembershipCreateComponent } from "../membership-create/membership-create.component";
 
 @Component({
   selector: 'app-member-detail',
   standalone: true,
-  imports: [DatePipe,NgIf, NgFor, NgClass, CurrencyPipe, TabsModule, GalleryModule, RouterLink],
+  imports: [DatePipe, NgIf, NgFor, NgClass, CurrencyPipe, TabsModule, GalleryModule, RouterLink, MembershipCreateComponent],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })
-export class MemberDetailComponent implements OnInit{
+export class MemberDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private memberService = inject(MemberService);
   member?: Member;
   memberships: Membership[] = [];
-  memberLoginName: string|null = null;
-  totalDueAmount :number =0;
-  totalPaidAmount :number =0;
-  images: GalleryItem[] =[];
-  supplementOrdered: SupplementOrder[] =[];
-  
+  memberLoginName: string | null = null;
+  totalDueAmount: number = 0;
+  totalPaidAmount: number = 0;
+  images: GalleryItem[] = [];
+  supplementOrdered: SupplementOrder[] = [];
+  isCreateMembership: boolean = false;
+
   ngOnInit(): void {
     this.memberLoginName = this.route.snapshot.paramMap.get('memberLoginName');
     if (this.memberLoginName) {
       this.fetchMemberDetails(this.memberLoginName);
     }
+    this.isCreateMembership = false;
   }
 
   fetchMemberDetails(loginName: string): void {
@@ -39,8 +42,8 @@ export class MemberDetailComponent implements OnInit{
       next: (member) => {
         this.member = member;
         this.memberships = member.memberships || [];
-        member.photos.map(p=>{
-          this.images.push(new ImageItem({src: p.url, thumb: p.url}))
+        member.photos.map(p => {
+          this.images.push(new ImageItem({ src: p.url, thumb: p.url }))
         });
         this.supplementOrdered = member.supplementOrders;
         this.calculateAmounts();
@@ -65,11 +68,10 @@ export class MemberDetailComponent implements OnInit{
         return 'Unknown';
     }
   }
-  calculateAmounts():void{
+  calculateAmounts(): void {
     let sumForDue = 0;
     let sumForPaid = 0;
-    if(this.memberships.length>0)
-    {
+    if (this.memberships.length > 0) {
       for (let index = 0; index < this.memberships.length; index++) {
         sumForDue += this.memberships[index].dueAmount;
         sumForPaid += this.memberships[index].paidAmount;
@@ -77,5 +79,11 @@ export class MemberDetailComponent implements OnInit{
       this.totalDueAmount = sumForDue;
       this.totalPaidAmount = sumForPaid;
     }
+  }
+  createMembership(): void {
+    this.isCreateMembership = true;
+  }
+  onChange(event : boolean): void {
+    this.isCreateMembership = event;
   }
 }

@@ -59,7 +59,7 @@ namespace SDronacharyaFitnessZone.Core.DTOs
                 BloodGroup = member.BloodGroup,
                 JoiningDate = member.JoiningDate,
                 IsOldmember = (DateTime.Now.Year - member.JoiningDate.Year) > 2,
-                ImageUrl = member.Photos.FirstOrDefault(p => p.IsMain)!.Url
+                ImageUrl = member.Photos.Count>0 ? member.Photos.FirstOrDefault(p => p.IsMain)!.Url : "https://randomuser.me/api/portraits/men/87.jpg"
             };
         }
         public static string GetMemberPassword(byte[] computedHash)

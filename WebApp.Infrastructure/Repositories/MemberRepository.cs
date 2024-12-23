@@ -25,9 +25,10 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
 
         public async Task<Member> AddMemberPhoto(Member member, Photo photo)
         {
-            member.Photos.Add(photo);
+            //member.Photos.Add(photo);
+            _dbContext.Photos.Add(photo);
             int status = await _dbContext.SaveChangesAsync();
-            if (status > 1)
+            if (status > 0)
                 return member;
             return null;
         }

@@ -1,0 +1,67 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">New Membership for {{memberLoginName}}</h4>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="newMembershipPlanForm" (ngSubmit)="createMembershipPlan()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label for="membershipType" class="form-label">Membership Type</label>
+                        <select formControlName="membershipType" class="form-select">
+                            <option value="">Select </option>
+                            <option value="0">Monthly</option>
+                            <option value="1">Quarterly</option>
+                            <option value="2">Half-Yearly</option>
+                            <option value="3">Yearly</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label for="dueAmount" class="form-label">Amount</label>
+                        <input type="number" id="dueAmount" class="form-control" [value]="getAmount()" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <app-date-picker [label]="'Membership Start Date'"
+                            [formControl]="$any(newMembershipPlanForm.controls['membershipStartDate'])"
+                            [maxDate]="maxDate" [minDate]="minDate">
+                        </app-date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label for="paidAmount" class="form-label">Pay Amount</label>
+                        <input
+                          type="number"
+                          id="paidAmount"
+                          class="form-control"
+                          formControlName="paidAmount"
+                          (input)="validateAmount($event)"
+                          />
+                        <div *ngIf="newMembershipPlanForm.get('paidAmount')?.hasError('min')" class="alert alert-danger">
+                          Amount cannot be less than 0.
+                        </div>
+                      </div>
+                      
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label for="dueAmount" class="form-label">Due Amount</label>
+                        <input type="number" id="dueAmount" class="form-control" [value]="getDueAmount()" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                <button type="button" class="btn btn-warning btn-lg" (click)="onCancel()">Cancel</button>
+              </div>
+        </form>
+    </div>
+</div>

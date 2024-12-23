@@ -1,82 +1,205 @@
-<form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="container mt-4">
-    <div class="row g-3">
-      <div class="col-md-4">
-        <label for="firstName" class="form-label">First Name</label>
-        <input formControlName="firstName" type="text" id="firstName" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="middleName" class="form-label">Middle Name</label>
-        <input formControlName="middleName" type="text" id="middleName" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="lastName" class="form-label">Last Name</label>
-        <input formControlName="lastName" type="text" id="lastName" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="dateOfBirth" class="form-label">Date of Birth</label>
-        <input formControlName="dateOfBirth" type="date" id="dateOfBirth" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="gender" class="form-label">Gender</label>
-        <select formControlName="gender" id="gender" class="form-select">
-          <option value="0">Male</option>
-          <option value="1">Female</option>
-          <option value="2">Other</option>
-        </select>
-      </div>
-  
-      <div class="col-md-4">
-        <label for="email" class="form-label">Email</label>
-        <input formControlName="email" type="email" id="email" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="password" class="form-label">Password</label>
-        <input formControlName="password" type="password" id="password" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="phoneNumber" class="form-label">Phone Number</label>
-        <input formControlName="phoneNumber" type="text" id="phoneNumber" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="alternatePhoneNumber" class="form-label">Alternate Phone Number</label>
-        <input formControlName="alternatePhoneNumber" type="text" id="alternatePhoneNumber" class="form-control" />
-      </div>
-  
-      <div class="col-md-12">
-        <label for="address" class="form-label">Address</label>
-        <input formControlName="address" type="text" id="address" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="bloodGroup" class="form-label">Blood Group</label>
-        <input formControlName="bloodGroup" type="text" id="bloodGroup" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="joiningDate" class="form-label">Joining Date</label>
-        <input formControlName="joiningDate" type="date" id="joiningDate" class="form-control" />
-      </div>
-  
-      <div class="col-md-4">
-        <label for="isOldmember" class="form-check-label">Is Old Member</label>
-        <input formControlName="isOldmember" type="checkbox" id="isOldmember" class="form-check-input ms-2" />
-      </div>
-  
-      <div class="col-12 mt-4">
-        <button type="submit" class="btn btn-primary w-100">Submit</button>
-      </div>
+<form [formGroup]="createMemberForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'First Name'"
+      [formControl]="$any(createMemberForm.controls['firstName'])"
+      [type]="'text'"
+      >
+      </app-text-input>
     </div>
-  </form>
-  
+    <!-- <div class="col-md-4">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        [class.is-invalid]="createMemberForm.get('firstName')?.errors && createMemberForm.get('firstName')?.touched"
+        formControlName="firstName" type="text" id="firstName" class="form-control" />
+      <div class="invalid-feedback" *ngIf="createMemberForm.get('firstName')?.hasError('required')">Please enter First
+        Name</div>
+      <div class="invalid-feedback" *ngIf="createMemberForm.get('firstName')?.hasError('pattern')">Please enter a valid
+        First Name</div>
+    </div> -->
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'Middle Name'"
+      [formControl]="$any(createMemberForm.controls['middleName'])"
+      [type]="'text'"
+      >
+      </app-text-input>
+    </div>
+    <!-- <div class="col-md-4">
+      <label for="middleName" class="form-label">Middle Name</label>
+      <input formControlName="middleName" type="text" id="middleName" class="form-control" />
+    </div> -->
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'Last Name'"
+      [formControl]="$any(createMemberForm.controls['lastName'])"
+      [type]="'text'"
+      >
+      </app-text-input>
+    </div>
+    
+    <!-- <div class="col-md-4">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input formControlName="lastName" type="text" id="lastName" class="form-control" />
+    </div> -->
+    <div class="col-md-4">
+      <app-date-picker
+      [label] = "'Date Of Birth'"
+      [formControl]="$any(createMemberForm.controls['dateOfBirth'])"
+      [maxDate] = "maxdate"
+      >
+      </app-date-picker>
+    </div>
+    <!-- <div class="col-md-4">
+      <label for="dateOfBirth" class="form-label">Date of Birth</label>
+      <input formControlName="dateOfBirth" type="date" id="dateOfBirth" class="form-control" />
+    </div> -->
+
+    <div class="col-md-4">
+      <label for="gender" class="form-label">Gender</label>
+      <select formControlName="gender" id="gender" class="form-select">
+        <option value="0">Male</option>
+        <option value="1">Female</option>
+        <option value="2">Other</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'Email'"
+      [formControl]="$any(createMemberForm.controls['email'])"
+      [type]="'email'"
+      >
+      </app-text-input>
+    </div>
+    <div class="col-md-4">
+      <label for="memberLoginName" class="form-label">Member Login Name</label>
+      <input type="text" id="memberLoginName" 
+      class="form-control" 
+      disabled 
+      [value]="showMemberLoginName()"/>
+    </div>
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'Password'"
+      [formControl]="$any(createMemberForm.controls['password'])"
+      [type]="'password'"
+      >
+      </app-text-input>
+    </div>
+    <!-- <div class="col-md-4">
+      <label for="password" class="form-label">Password</label>
+      <input formControlName="password" type="password" id="password" class="form-control" />
+    </div> -->
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'Confirm Password'"
+      [formControl]="$any(createMemberForm.controls['confirmPassword'])"
+      [type]="'password'"
+      >
+      </app-text-input>
+    </div>
+    <!-- <div class="col-md-4">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control" />
+    </div> -->
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'Phone Number'"
+      [formControl]="$any(createMemberForm.controls['phoneNumber'])"
+      >
+      </app-text-input>
+    </div>
+    <!-- <div class="col-md-4">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input formControlName="phoneNumber" type="text" id="phoneNumber" class="form-control" />
+    </div> -->
+    <div class="col-md-4">
+      <app-text-input
+      [label] = "'Alternate Phone Number'"
+      [formControl]="$any(createMemberForm.controls['alternatePhoneNumber'])"
+      >
+      </app-text-input>
+    </div>
+    <!-- <div class="col-md-4">
+      <label for="alternatePhoneNumber" class="form-label">Alternate Phone Number</label>
+      <input formControlName="alternatePhoneNumber" type="text" id="alternatePhoneNumber" class="form-control" />
+    </div> -->
+
+    <!-- <div class="col-md-4">
+      <label for="membershipType" class="form-label">Membership Plan</label>
+      <select formControlName="membershipType" id="membershipType" class="form-select">
+        <option value="">Select Plan</option>
+        <option value="0">Monthly</option>
+        <option value="1">Quaterly</option>
+        <option value="2">Half Yearly</option>
+        <option value="3">Yearly</option>
+      </select>
+    </div> -->
+
+    <div class="col-md-12">
+      <label for="address" class="form-label">Address</label>
+      <input formControlName="address" type="text" id="address" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+      <label for="bloodGroup" class="form-label">Blood Group</label>
+      <select formControlName="bloodGroup" id="bloodGroup" class="form-select">
+        <option value="">Select Blood Group</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <app-date-picker
+      [label] = "'Joining Date'"
+      [formControl]="$any(createMemberForm.controls['joiningDate'])"
+      [minDate]="getMinimumDate()"
+      >
+      </app-date-picker>
+    </div>
+    <div class="col-md-4">
+      <label for="isOldmember" class="form-label">Is Old Member</label>
+      <input type="text" id="isOldmember" 
+      class="form-control" 
+      disabled 
+      [value]="checkOldMember()"/>
+    </div>
+    <!-- <div class="col-md-4">
+      <label for="joiningDate" class="form-label">Joining Date</label>
+      <input formControlName="joiningDate" type="date" id="joiningDate" class="form-control" />
+    </div> -->
+    <!-- <div class="col-md-4">
+      <app-date-picker
+      [label] = "'Membership Start Date'"
+      [formControl]="$any(createMemberForm.controls['membershipStartDate'])"
+      [minDate]="getMinimumDate()"
+      >
+      </app-date-picker>
+    </div> -->
+    <!-- <div class="col-md-4">
+      <label for="membershipStartDate" class="form-label">Membership Start Date</label>
+      <input formControlName="membershipStartDate" type="date" id="membershipStartDate" class="form-control" />
+    </div> -->
+
+    @if (validationErrors?.length) {
+      <div class="alert alert-danger">
+        <ul>
+          @for (error of validationErrors; track $index) {
+            <li>{{error}}</li>
+          }
+        </ul>
+      </div>
+    }
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-success btn-lg">Submit</button>
+      <button type="button" class="btn btn-warning btn-lg" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</form>

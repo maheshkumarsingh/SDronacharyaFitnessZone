@@ -22,7 +22,6 @@ namespace SDronacharyaFitnessZone.Core.DTOs
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Only alphabets are allowed.")]
         public string MiddleName { get; set; } = string.Empty;
 
-        [Required]
         [StringLength(50)]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Only alphabets are allowed.")]
         public string LastName { get; set; } = string.Empty;

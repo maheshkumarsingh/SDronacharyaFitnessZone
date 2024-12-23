@@ -14,6 +14,7 @@ import { adminAuthGuard } from './_guards/admin-auth.guard';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { MemberEditComponent } from './admin/member-edit/member-edit.component';
 import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
+import { MembershipCreateComponent } from './admin/membership-create/membership-create.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -27,6 +28,7 @@ export const routes: Routes = [
             {path: 'member-edit/:memberLoginName', component: MemberEditComponent, canDeactivate:[preventUnsavedChangesGuard]},
             {path: 'report', component: ReportComponent},
             {path: 'maintenance', component: MaintenanceComponent},
+            {path: 'membership-create/:memberLoginName', component: MembershipCreateComponent},
         ]
     },
     {path: 'member-detail/:memberLoginName', component: MemberDetailComponent},
