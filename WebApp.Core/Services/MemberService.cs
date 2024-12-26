@@ -1,17 +1,13 @@
 ﻿using CloudinaryDotNet.Actions;
-using SDronacharyaFitnessZone.Core.Domain.RepositoryContracts;
-using SDronacharyaFitnessZone.Core.DTOs;
-using SDronacharyaFitnessZone.Core.ServiceContracts;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.RepositoryContracts;
 using WebApp.Core.DTOs;
+using WebApp.Core.Helpers;
 using WebApp.Core.ServiceContracts;
+using WebApp.Core.Helpers;
 
 namespace WebApp.Core.Services
 {
@@ -30,31 +26,31 @@ namespace WebApp.Core.Services
             _tokenService = tokenService;
         }
 
-        public async Task<MemberResponseDTO> CreateMember(AddMemberRequestDTO memberAddRequestDTO)
+        public async Task<MemberResponseDTO> CreateMemberAsync(AddMemberRequestDTO memberAddRequestDTO)
         {
             Member member = memberAddRequestDTO.ToMember();
-            Member memberReturn = await _memberRepository.CreateMember(member);
+            Member memberReturn = await _memberRepository.CreateMemberAsync(member);
             MemberResponseDTO memberResponseDTO = memberReturn.ToMemberResponseDTO();
             return memberResponseDTO;
         }
 
-        public Task<string> DeleteMember(string memberID)
+        public Task<string> DeleteMemberAsync(string memberID)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteMemberPhoto(MemberResponseDTO memberResponseDTO, int photoId)
+        public async Task<bool> DeleteMemberPhotoAsync(MemberResponseDTO memberResponseDTO, int photoId)
         {
-            var member = await _memberRepository.GetMemberById(memberResponseDTO.MemberLoginName);
+            var member = await _memberRepository.GetMemberByIdAsync(memberResponseDTO.MemberLoginName);
             var photo = member.Photos.FirstOrDefault(x => x.Id == photoId);
             if (photo == null) return false;
-            var status = await _memberRepository.DeleteMemberPhoto(member, photo);
+            var status = await _memberRepository.DeleteMemberPhotoAsync(member, photo);
             return status;
         }
 
-        public async Task<IList<MemberResponseDTO>> GetAllMembers()
+        public async Task<PagedList<MemberResponseDTO>> GetAllMembersAsync(UsersParams usersParams)
         {
-            var members = await _memberRepository.GetAllMembers();
+            var members = await _memberRepository.GetAllMembersAsync(usersParams);
             var memberResponseDTOs = new List<MemberResponseDTO>();
             foreach (var member in members)
             {
@@ -64,12 +60,13 @@ namespace WebApp.Core.Services
                 memberResponseDTO.SupplementOrders = member.SupplementOrders.Select(x => x.ToSupplementResponseDTO()).ToList();
                 memberResponseDTOs.Add(memberResponseDTO);
             }
-            return memberResponseDTOs;
+            //Response.AddPaginationHeader(members.CurrentPage, members.PageSize, members.TotalCount, members.TotalPages);
+            return null;
         }
 
-        public async Task<MemberResponseDTO> GetMemberById(string memberID)
+        public async Task<MemberResponseDTO> GetMemberByIdAsync(string memberID)
         {
-            var member = await _memberRepository.GetMemberById(memberID);
+            var member = await _memberRepository.GetMemberByIdAsync(memberID);
             //IList<Membership> memberships = await _membershipRepository.GetMemberMembershipsList(member.MemberLoginName);
             MemberResponseDTO memberResponseDTO = member.ToMemberResponseDTO();
             memberResponseDTO.Memberships = member.Memberships!.Select(x => x.ToMembershipReponseDTO()).ToList();
@@ -82,9 +79,9 @@ namespace WebApp.Core.Services
             return null;
         }
 
-        public async Task<MemberResponseDTO> LoginMember(LoginMemberDTO memberRequestDTO)
+        public async Task<MemberResponseDTO> AuthenticateMemberAsync(LoginMemberDTO memberRequestDTO)
         {
-            Member member = await _memberRepository.LoginMember(memberRequestDTO.MemberLoginName, memberRequestDTO.Password);
+            Member member = await _memberRepository.AuthenticateMemberAsync(memberRequestDTO.MemberLoginName, memberRequestDTO.Password);
             if (member != null)
             {
                 MemberResponseDTO memberResponseDTO = member.ToMemberResponseDTO();
@@ -97,9 +94,9 @@ namespace WebApp.Core.Services
             return null;
         }
 
-        public async Task<bool> SetMainPhotoForMember(int photoId, MemberResponseDTO memberResponseDTO)
+        public async Task<bool> SetMemberMainPhotoAsync(int photoId, MemberResponseDTO memberResponseDTO)
         {
-            var member = await _memberRepository.GetMemberById(memberResponseDTO.MemberLoginName);
+            var member = await _memberRepository.GetMemberByIdAsync(memberResponseDTO.MemberLoginName);
             if (member == null) return false;
             var photo = member.Photos.FirstOrDefault(x => x.Id == photoId);
             if (photo == null || photo.IsMain) return false;
@@ -109,7 +106,7 @@ namespace WebApp.Core.Services
                 currentMain.IsMain = false;
             }
             photo.IsMain = true;
-            return await _memberRepository.SetMainPhotoForMember(photo);
+            return await _memberRepository.SetMemberMainPhotoAsync(photo);
         }
 
         //public async Task<MemberResponseDTO> RegisterMember(RegisterMemberRequestDTO memberRequestDTO)
@@ -130,10 +127,10 @@ namespace WebApp.Core.Services
         //    return memberResponseDTO;
         //}
 
-        public async Task<int> UpdateMember(UpdateMemberRequestDTO memberUpdateRequestDTO)
+        public async Task<int> UpdateMemberAsync(UpdateMemberRequestDTO memberUpdateRequestDTO)
         {
             Member member = memberUpdateRequestDTO.ToMember();
-            var status = await _memberRepository.UpdateMember(member);
+            var status = await _memberRepository.UpdateMemberAsync(member);
             return status;
         }
     }

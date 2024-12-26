@@ -1,17 +1,14 @@
-﻿
+﻿using WebApp.Core.Domain.Entities;
 
-using SDronacharyaFitnessZone.Core.DTOs;
-using WebApp.Core.Domain.Entities;
-
-namespace SDronacharyaFitnessZone.Core.Domain.RepositoryContracts
+namespace WebApp.Core.Domain.RepositoryContracts
 {
     public interface IMembershipRepository
     {
-        public Task<IList<MembershipPlan>> GetMembershipPlans();
-        public Task<Membership> CreateMembership(Membership membership);
-        public Task<string> DeleteMembership(string MemberId, int MembershipId);
-        public Task<IList<Membership>> GetMemberMembershipsList(string memberID);
-        public Task<Membership> GetMembershipById(int id);
-        public Task<int> UpdateMembership(Membership membership);
+        public Task<IList<MembershipPlan>> GetMembershipPlansAysnc();
+        public Task<Membership> CreateMembershipAsync(Membership membership);
+        public Task<string> DeleteMembershipAsync(string MemberId, int MembershipId);
+        public Task<IList<Membership>> GetMembershipsByMemberIdAsync(string memberID);
+        public Task<Membership> GetMembershipByIdAsync(int id);
+        public Task<int> UpdateMembershipAsync(Membership membership);
     }
 }

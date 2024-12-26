@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.Entities.Enums;
 using WebApp.Core.Domain.RepositoryContracts;
+using WebApp.Core.Helpers;
 using WebApp.Infrastructure.DBContext;
 
-namespace SDronacharyaFitnessZone.Infrastructure.Repositories
+namespace WebApp.Infrastructure.Repositories
 {
     public class MemberRepository : IMemberRepository
     {
@@ -23,7 +24,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<Member> AddMemberPhoto(Member member, Photo photo)
+        public async Task<Member> AddMemberPhotoAsync(Member member, Photo photo)
         {
             //member.Photos.Add(photo);
             _dbContext.Photos.Add(photo);
@@ -33,7 +34,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             return null;
         }
 
-        public async Task<Member> CreateMember(Member member)
+        public async Task<Member> CreateMemberAsync(Member member)
         {
             _dbContext.Members.Add(member);
             await _dbContext.SaveChangesAsync();
@@ -41,28 +42,28 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             return await _dbContext.Members.FirstOrDefaultAsync(x => x.MemberLoginName == member.MemberLoginName);
         }
 
-        public Task<string> DeleteMember(string memberID)
+        public Task<string> DeleteMemberByIdAsync(string memberID)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteMemberPhoto(Member member, Photo photo)
+        public async Task<bool> DeleteMemberPhotoAsync(Member member, Photo photo)
         {
             _dbContext.Photos.Remove(photo);
             int status = await _dbContext.SaveChangesAsync();
             return status > 0;
         }
 
-        public async Task<IList<Member>> GetAllMembers()
+        public async Task<PagedList<Member>> GetAllMembersAsync(UsersParams usersParams)
         {
-            return await _dbContext.Members
+            var query = _dbContext.Members
                                     .Include(m => m.Memberships)
                                     .Include(m => m.SupplementOrders)
-                                    .Include(m => m.Photos)
-                                    .ToListAsync();
+                                    .Include(m => m.Photos);
+            return await PagedList<Member>.Create(query, usersParams.PageNumber, usersParams.PageSize);
         }
 
-        public async Task<Member> GetMemberById(string memberLoginName)
+        public async Task<Member> GetMemberByIdAsync(string memberLoginName)
         {
             return await _dbContext.Members
                                             .Include(m => m.Memberships)
@@ -71,9 +72,9 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
                                             .FirstOrDefaultAsync(m => m.MemberLoginName == memberLoginName);
         }
 
-        public async Task<Member> LoginMember(string memberLoginName, string passWord)
+        public async Task<Member> AuthenticateMemberAsync(string memberLoginName, string passWord)
         {
-            Member member = await GetMemberById(memberLoginName);
+            Member member = await GetMemberByIdAsync(memberLoginName);
             if (CheckLoginPassword(member, passWord))
             {
                 return member;
@@ -89,13 +90,13 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             return await _dbContext.Members.FirstOrDefaultAsync(x => x.MemberLoginName == member.MemberLoginName);
         }
 
-        public async Task<bool> SetMainPhotoForMember(Photo photo)
+        public async Task<bool> SetMemberMainPhotoAsync(Photo photo)
         {
             int status = await _dbContext.SaveChangesAsync();
             return status > 0;
         }
 
-        public async Task<int> UpdateMember(Member updateMember)
+        public async Task<int> UpdateMemberAsync(Member updateMember)
         {
             Member member = await _dbContext.Members.FindAsync(updateMember.MemberLoginName);
             member.FirstName = updateMember.FirstName;

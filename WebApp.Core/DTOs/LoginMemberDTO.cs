@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SDronacharyaFitnessZone.Core.DTOs
+namespace WebApp.Core.DTOs
 {
     public class LoginMemberDTO
     {

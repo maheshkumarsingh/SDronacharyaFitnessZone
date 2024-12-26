@@ -1,14 +1,7 @@
-﻿using SDronacharyaFitnessZone.Core.Domain.RepositoryContracts;
-using SDronacharyaFitnessZone.Core.DTOs;
-using SDronacharyaFitnessZone.Core.ServiceContracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebApp.Core.DTOs;
+using WebApp.Core.ServiceContracts;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.RepositoryContracts;
-using WebApp.Core.DTOs;
 
 namespace SDronacharyaFitnessZone.Core.Services
 {
@@ -29,10 +22,10 @@ namespace SDronacharyaFitnessZone.Core.Services
             {
                 MembershipType = addMembershipRequestDTO.MembershipType,
                 MembershipStartDate = addMembershipRequestDTO.MembershipStartDate,
-                Member = await _memberRepository.GetMemberById(addMembershipRequestDTO.MemberLoginName),
+                Member = await _memberRepository.GetMemberByIdAsync(addMembershipRequestDTO.MemberLoginName),
                 PaidAmount = addMembershipRequestDTO.PaidAmount,
             };
-            return (await _membershipRepository.CreateMembership(membership)).ToMembershipReponseDTO();
+            return (await _membershipRepository.CreateMembershipAsync(membership)).ToMembershipReponseDTO();
         }
 
         public Task<string> DeleteMembership(string MemberId, int MembershipId)
@@ -42,17 +35,17 @@ namespace SDronacharyaFitnessZone.Core.Services
 
         public Task<IList<MembershipPlan>> GetMembershipPlans()
         {
-            return _membershipRepository.GetMembershipPlans();
+            return _membershipRepository.GetMembershipPlansAysnc();
         }
 
         public async Task<IList<MembershipResponseDTO>> GetMemberMembershipsList(string memberLoginId)
         {
-            var memberships = await _membershipRepository.GetMemberMembershipsList(memberLoginId);
+            var memberships = await _membershipRepository.GetMembershipsByMemberIdAsync(memberLoginId);
             return memberships.Select(x => x.ToMembershipReponseDTO()).ToList();
         }
         public async Task<MembershipResponseDTO> GetMembershipById(int id)
         {
-            var membership = await _membershipRepository.GetMembershipById(id);
+            var membership = await _membershipRepository.GetMembershipByIdAsync(id);
             return membership.ToMembershipReponseDTO();
         }
         public async Task<MembershipResponseDTO> UpdateMembership(UpdateMembershipRequestDTO updateMembershipRequestDTO)
@@ -62,10 +55,10 @@ namespace SDronacharyaFitnessZone.Core.Services
                 Id = updateMembershipRequestDTO.Id,
                 MembershipType = updateMembershipRequestDTO.MembershipType,
                 MembershipStartDate = updateMembershipRequestDTO.MembershipStartDate,
-                Member = await _memberRepository.GetMemberById(updateMembershipRequestDTO.MemberLoginName),
+                Member = await _memberRepository.GetMemberByIdAsync(updateMembershipRequestDTO.MemberLoginName),
                 PaidAmount = updateMembershipRequestDTO.PaidAmount,
             };
-            if(await _membershipRepository.UpdateMembership(membership) > 0)
+            if(await _membershipRepository.UpdateMembershipAsync(membership) > 0)
                  return membership.ToMembershipReponseDTO();
             return null;
         }

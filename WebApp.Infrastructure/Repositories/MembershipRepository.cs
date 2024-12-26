@@ -1,10 +1,9 @@
-﻿using AutoMapper.Execution;
-using Microsoft.EntityFrameworkCore;
-using SDronacharyaFitnessZone.Core.Domain.RepositoryContracts;
+﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Core.Domain.Entities;
+using WebApp.Core.Domain.RepositoryContracts;
 using WebApp.Infrastructure.DBContext;
 
-namespace SDronacharyaFitnessZone.Infrastructure.Repositories
+namespace WebApp.Infrastructure.Repositories
 {
     public class MembershipRepository : IMembershipRepository
     {
@@ -15,25 +14,25 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             _applicationDBContext = applicationDBContext;
         }
 
-        public async Task<Membership> CreateMembership(Membership membership)
+        public async Task<Membership> CreateMembershipAsync(Membership membership)
         {
             _applicationDBContext.Memberships.Add(membership);
             await _applicationDBContext.SaveChangesAsync();
             return membership;
-                            
+
         }
 
-        public Task<string> DeleteMembership(string MemberId, int MembershipId)
+        public Task<string> DeleteMembershipAsync(string MemberId, int MembershipId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IList<MembershipPlan>> GetMembershipPlans()
+        public async Task<IList<MembershipPlan>> GetMembershipPlansAysnc()
         {
             return await _applicationDBContext.MembershipPlans.ToListAsync();
         }
 
-        public async Task<IList<Membership>> GetMemberMembershipsList(string memberID)
+        public async Task<IList<Membership>> GetMembershipsByMemberIdAsync(string memberID)
         {
             await _applicationDBContext.Database.ExecuteSqlRawAsync("EXEC MarkInactiveMemberships");
             return await _applicationDBContext.Memberships
@@ -42,7 +41,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
                                                 .ToListAsync();
 
         }
-        public async Task<Membership> GetMembershipById(int id)
+        public async Task<Membership> GetMembershipByIdAsync(int id)
         {
             var membership = await _applicationDBContext.Memberships
                                                 .Include(x => x.Member)
@@ -52,7 +51,7 @@ namespace SDronacharyaFitnessZone.Infrastructure.Repositories
             return membership;
         }
 
-        public async Task<int> UpdateMembership(Membership membership)
+        public async Task<int> UpdateMembershipAsync(Membership membership)
         {
             Membership? membershipReturn = await _applicationDBContext.Memberships.FindAsync(membership.Id);
             membershipReturn.MembershipType = membership.MembershipType;

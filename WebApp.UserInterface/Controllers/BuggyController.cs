@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SDronacharyaFitnessZone.UserInterface.Controllers;
 using WebApp.Core.Domain.Entities;
 using WebApp.Infrastructure.DBContext;
 
-namespace API.Controllers
+namespace WebApp.UserInterface.Controllers
 {
     public class BuggyController : BaseAPIController
     {

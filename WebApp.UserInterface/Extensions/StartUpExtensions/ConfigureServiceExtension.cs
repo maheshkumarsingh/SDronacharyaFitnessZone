@@ -1,16 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using SDronacharyaFitnessZone.Core.Domain.RepositoryContracts;
-using SDronacharyaFitnessZone.Core.ServiceContracts;
+using WebApp.Core.ServiceContracts;
 using SDronacharyaFitnessZone.Core.Services;
-using SDronacharyaFitnessZone.Infrastructure.Repositories;
 using System.Text;
 using WebApp.Core.Domain.RepositoryContracts;
 using WebApp.Core.Helpers;
-using WebApp.Core.ServiceContracts;
 using WebApp.Core.Services;
 using WebApp.Infrastructure.DBContext;
+using WebApp.Infrastructure.Repositories;
 
 namespace WebApp.UserInterface.Extensions.StartUpExtensions
 {

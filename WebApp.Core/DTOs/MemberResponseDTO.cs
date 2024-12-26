@@ -9,7 +9,7 @@ using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.Entities.Enums;
 using WebApp.Core.DTOs;
 
-namespace SDronacharyaFitnessZone.Core.DTOs
+namespace WebApp.Core.DTOs
 {
     public class MemberResponseDTO
     {

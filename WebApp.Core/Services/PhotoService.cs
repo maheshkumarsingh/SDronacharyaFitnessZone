@@ -2,8 +2,6 @@
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using SDronacharyaFitnessZone.Core.DTOs;
-using System.Reflection.Metadata.Ecma335;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.Domain.RepositoryContracts;
 using WebApp.Core.DTOs;
@@ -41,7 +39,7 @@ namespace WebApp.Core.Services
                 };
                 uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
-            Member member = await _memberRepository.GetMemberById(memberResponse.MemberLoginName);
+            Member member = await _memberRepository.GetMemberByIdAsync(memberResponse.MemberLoginName);
             Photo photo= null;
             if (uploadResult.Error == null)
             {
@@ -54,7 +52,7 @@ namespace WebApp.Core.Services
                         Member = member,
                     };
                     member.Photos.Add(photo);
-                    member = await _memberRepository.AddMemberPhoto(member, photo);
+                    member = await _memberRepository.AddMemberPhotoAsync(member, photo);
                 }
             }
             if (member != null && photo != null)
@@ -64,7 +62,7 @@ namespace WebApp.Core.Services
 
         public async Task<DeletionResult> DeletePhotoAsync(MemberResponseDTO responseDTO, int photoId)
         {
-            var member = await _memberRepository.GetMemberById(responseDTO.MemberLoginName);
+            var member = await _memberRepository.GetMemberByIdAsync(responseDTO.MemberLoginName);
             var photo = member.Photos.FirstOrDefault(x => x.Id == photoId);
             if (photo == null) return null;
             var deleteParam = new DeletionParams(photo.PublicId);

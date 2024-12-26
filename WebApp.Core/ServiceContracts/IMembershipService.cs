@@ -1,13 +1,7 @@
-﻿using SDronacharyaFitnessZone.Core.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebApp.Core.DTOs;
 using WebApp.Core.Domain.Entities;
-using WebApp.Core.DTOs;
 
-namespace SDronacharyaFitnessZone.Core.ServiceContracts
+namespace WebApp.Core.ServiceContracts
 {
     public interface IMembershipService
     {

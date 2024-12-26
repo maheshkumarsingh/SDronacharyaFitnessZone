@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SDronacharyaFitnessZone.Core.DTOs;
+using WebApp.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

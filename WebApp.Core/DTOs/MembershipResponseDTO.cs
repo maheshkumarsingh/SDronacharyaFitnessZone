@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities.Enums;
 using WebApp.Core.Domain.Entities;
 
-namespace SDronacharyaFitnessZone.Core.DTOs
+namespace WebApp.Core.DTOs
 {
     public class MembershipResponseDTO
     {

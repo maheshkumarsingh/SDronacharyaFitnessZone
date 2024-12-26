@@ -9,7 +9,7 @@ using WebApp.Core.Domain.Entities.Enums;
 using System.Security.Cryptography;
 using WebApp.Core.Domain.Entities;
 
-namespace SDronacharyaFitnessZone.Core.DTOs
+namespace WebApp.Core.DTOs
 {
     public class UpdateMemberRequestDTO
     {

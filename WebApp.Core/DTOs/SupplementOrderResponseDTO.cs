@@ -1,11 +1,4 @@
-﻿
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebApp.Core.Domain.Entities;
+﻿using WebApp.Core.Domain.Entities;
 
 namespace WebApp.Core.DTOs
 {

@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SDronacharyaFitnessZone.Core.DTOs;
-using System.Security.Claims;
-using WebApp.Core.Domain.Entities;
 using WebApp.Core.DTOs;
+using WebApp.Core.Helpers;
 using WebApp.Core.ServiceContracts;
 using WebApp.Infrastructure.DBContext;
 using WebApp.UserInterface.Extensions;
 
-namespace SDronacharyaFitnessZone.UserInterface.Controllers
+namespace WebApp.UserInterface.Controllers
 {
     [Authorize]
     public class MembersController : BaseAPIController
@@ -26,15 +23,16 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<IEnumerable<MemberResponseDTO>>> GetAllMembers()
+        public async Task<ActionResult<IEnumerable<MemberResponseDTO>>> GetAllMembers(UsersParams usersParams)
         {
-            var members = await _memberService.GetAllMembers();
+            var members = await _memberService.GetAllMembersAsync(usersParams);
+            Response.AddPaginationHeader(members.CurrentPage, members.PageSize, members.TotalCount, members.TotalPages);
             return Ok(members);
         }
         [HttpGet("{memberLoginName}")]
         public async Task<IActionResult> GetMemberById(string memberLoginName)
         {
-            var member = await _memberService.GetMemberById(memberLoginName);
+            var member = await _memberService.GetMemberByIdAsync(memberLoginName);
             if (member == null)
                 return NotFound();
             return Ok(member);
@@ -42,7 +40,7 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         [HttpPost]
         public async Task<ActionResult<MemberResponseDTO>> CreateMember(AddMemberRequestDTO requestDTO)
         {
-            MemberResponseDTO memberResponseDTO = await _memberService.CreateMember(requestDTO);
+            MemberResponseDTO memberResponseDTO = await _memberService.CreateMemberAsync(requestDTO);
             return Ok(memberResponseDTO);
         }
         [HttpDelete]
@@ -53,12 +51,12 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateMember(UpdateMemberRequestDTO requestDTO)
         {
-            var memberResponse = await _memberService.GetMemberById(User.GetMemberLoginNameByClaim());
+            var memberResponse = await _memberService.GetMemberByIdAsync(User.GetMemberLoginNameByClaim());
             if (memberResponse != null)
             {
-                var status = await _memberService.UpdateMember(requestDTO);
-                if(status > 0)
-                return Ok(requestDTO);
+                var status = await _memberService.UpdateMemberAsync(requestDTO);
+                if (status > 0)
+                    return Ok(requestDTO);
             }
             return BadRequest("Member cannot be updated. Check fields");
             //Member member = await _dbContext.Members.FindAsync(requestDTO.MemberLoginName);
@@ -76,7 +74,7 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoResponseDTO>> AddMemberPhoto(IFormFile file)
         {
-            var memberResponse = await _memberService.GetMemberById(User.GetMemberLoginNameByClaim());
+            var memberResponse = await _memberService.GetMemberByIdAsync(User.GetMemberLoginNameByClaim());
             if (memberResponse != null)
             {
                 var photoResponseDTO = await _photoService.AddPhotoAsync(file, memberResponse);
@@ -89,19 +87,19 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         [HttpPut("set-main-photo/{photoId:int}")]
         public async Task<ActionResult> SetMainPhotoForMember(int photoId)
         {
-            var memberResponse = await _memberService.GetMemberById(User.GetMemberLoginNameByClaim());
-            var status = await _memberService.SetMainPhotoForMember(photoId, memberResponse);
+            var memberResponse = await _memberService.GetMemberByIdAsync(User.GetMemberLoginNameByClaim());
+            var status = await _memberService.SetMemberMainPhotoAsync(photoId, memberResponse);
 
-            if(status) return NoContent();
+            if (status) return NoContent();
             return BadRequest("Fail");
         }
         [HttpDelete("delete-photo/{photoId:int}")]
         public async Task<ActionResult> DeleteMemberPhoto(int photoId)
         {
-            var memberResponse = await _memberService.GetMemberById(User.GetMemberLoginNameByClaim());
+            var memberResponse = await _memberService.GetMemberByIdAsync(User.GetMemberLoginNameByClaim());
             var cloudinaryStatus = await _photoService.DeletePhotoAsync(memberResponse, photoId);
             if (cloudinaryStatus == null) return BadRequest(cloudinaryStatus.Error.Message);
-            var dbStatus = await _memberService.DeleteMemberPhoto(memberResponse, photoId);
+            var dbStatus = await _memberService.DeleteMemberPhotoAsync(memberResponse, photoId);
             if (dbStatus)
                 return Ok();
             return BadRequest("Photo not deleted from DB");

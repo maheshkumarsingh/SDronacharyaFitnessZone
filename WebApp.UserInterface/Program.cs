@@ -1,7 +1,7 @@
 using WebApp.UserInterface.Extensions.StartUpExtensions;
 using WebApp.UserInterface.Middleware;
 
-namespace SDronacharyaFitnessZone.API
+namespace WebApp.UserInterface
 {
     public class Program
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core.Domain.Entities.Enums;
 
-namespace SDronacharyaFitnessZone.Core.DTOs
+namespace WebApp.Core.DTOs
 {
     public class AddMembershipRequestDTO
     {

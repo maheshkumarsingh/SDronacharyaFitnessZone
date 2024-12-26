@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SDronacharyaFitnessZone.Core.DTOs;
-using SDronacharyaFitnessZone.UserInterface.Controllers;
 using System.Security.Cryptography;
+using WebApp.Core.DTOs;
 using WebApp.Core.ServiceContracts;
 
 namespace WebApp.UserInterface.Controllers.Account
@@ -27,12 +26,12 @@ namespace WebApp.UserInterface.Controllers.Account
         public async Task<ActionResult<MemberResponseDTO>> LoginMember([FromBody]LoginMemberDTO loginMember)
         {
             //write logic for login
-            MemberResponseDTO memberResponse = await _memberService.GetMemberById(loginMember.MemberLoginName);
+            MemberResponseDTO memberResponse = await _memberService.GetMemberByIdAsync(loginMember.MemberLoginName);
             if (memberResponse == null)
             {
                 return Unauthorized("Wrong MemberLoginName" + loginMember.MemberLoginName);
             }
-            memberResponse = await _memberService.LoginMember(loginMember);
+            memberResponse = await _memberService.AuthenticateMemberAsync(loginMember);
             if (memberResponse == null)
             {
                 return BadRequest("Wrong password");

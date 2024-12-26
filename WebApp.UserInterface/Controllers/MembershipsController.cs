@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SDronacharyaFitnessZone.Core.DTOs;
-using SDronacharyaFitnessZone.Core.ServiceContracts;
+using WebApp.Core.ServiceContracts;
 using WebApp.Core.Domain.Entities;
 using WebApp.Core.DTOs;
+using WebApp.UserInterface.Controllers;
 
 namespace SDronacharyaFitnessZone.UserInterface.Controllers
 {

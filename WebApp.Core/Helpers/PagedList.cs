@@ -1,0 +1,26 @@
+﻿namespace WebApp.Core.Helpers
+{
+    public class PagedList<T> : List<T>
+    {
+        public PagedList(IEnumerable<T> items, int count, int pageNumber, int pageSize)
+        {
+            CurrentPage = pageNumber;
+            TotalPages = (int)Math.Ceiling(count / (double)pageSize); //12/5 = 3 pages 5 , 5, 2
+            PageSize = pageSize;
+            TotalCount = count;
+            AddRange(items);
+        }
+
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+        public int PageSize { get; set; }
+        public int TotalCount { get; set; }
+
+        public static async Task<PagedList<T>> Create(IQueryable<T> source, int pageNumber, int pageSize)
+        {
+            var count = source.Count();
+            var items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            return new PagedList<T>(items, count, pageNumber, pageSize);
+        }
+    }
+}
