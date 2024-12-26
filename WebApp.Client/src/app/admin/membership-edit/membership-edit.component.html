@@ -1,0 +1,116 @@
+<div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white text-center">
+        <h5>Edit Membership</h5>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="updateMembership()">
+          <div class="row mb-3">
+            <!-- First Row -->
+            <div class="col-md-4">
+              <label for="membershipType" class="form-label">Membership Type</label>
+              <input
+                type="text"
+                id="membershipType"
+                [value]="getMembershipType(membership().membershipType)"
+                name="membershipType"
+                class="form-control"
+                [disabled]="true"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="isMembershipActive" class="form-label">Active</label>
+              <p class="mt-2">
+                {{ membership().isMembershipActive ? 'YES' : 'NO' }}
+              </p>
+            </div>            
+            <div class="col-md-4">
+              <label for="membershipStartDate" class="form-label">Start Date</label>
+              <input
+                type="date"
+                id="membershipStartDate"
+                [(ngModel)]="membership().membershipStartDate"
+                name="membershipStartDate"
+                class="form-control"
+              />
+            </div>
+          </div>
+  
+          <div class="row mb-3">
+            <!-- Second Row -->
+            <div class="col-md-4">
+              <label for="membershipEndDate" class="form-label">End Date</label>
+              <input
+                type="date"
+                id="membershipEndDate"
+                [(ngModel)]="membership().membershipEndDate"
+                name="membershipEndDate"
+                class="form-control"
+                [disabled]="true"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="membershipAmount" class="form-label">Amount</label>
+              <input
+                type="number"
+                id="membershipAmount"
+                [(ngModel)]="membership().membershipAmount"
+                name="membershipAmount"
+                class="form-control"
+                [disabled]="true"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="paidAmount" class="form-label">Paid Amount</label>
+              <input
+                type="number"
+                id="paidAmount"
+                [(ngModel)]="membership().paidAmount"
+                name="paidAmount"
+                class="form-control"
+                disabled="true"
+              />
+            </div>
+          </div>
+  
+          <div class="row mb-3">
+            <!-- Third Row -->
+            <div class="col-md-4">
+              <label for="dueAmount" class="form-label">Due Amount</label>
+              <input
+                type="number"
+                id="dueAmount"
+                [(ngModel)]="membership().dueAmount"
+                name="dueAmount"
+                class="form-control"
+                disabled="true"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="repayAmount" class="form-label">Repay Amount</label>
+              <input
+                type="number"
+                id="repayAmount"
+                placeholder="Enter Repay Amount"
+                [(ngModel)]="repayAmount"
+                name="repayAmount"
+                class="form-control"
+              />
+            </div>
+          </div>
+  
+          <div class="row mt-4">
+            <!-- Buttons -->
+            <div class="col text-center">
+              <button type="submit" class="btn btn-primary me-2">
+                <i class="fa fa-save"></i> Save
+              </button>
+              <button type="button" class="btn btn-warning" (click)="onEditCancel()">
+                <i class="fa fa-times-circle"></i> Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>  

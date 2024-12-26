@@ -38,9 +38,10 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
             if (membershipResponseDTO != null)
             {
                 membershipResponseDTO = await _membershipService.UpdateMembership(update);
-                return Ok(membershipResponseDTO);
+                if (membershipResponseDTO != null)
+                    return Ok(membershipResponseDTO);
             }
-            return BadRequest();
+            return BadRequest("Membership not updated");
         }
     }
 }

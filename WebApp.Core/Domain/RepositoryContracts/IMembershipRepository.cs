@@ -12,6 +12,6 @@ namespace SDronacharyaFitnessZone.Core.Domain.RepositoryContracts
         public Task<string> DeleteMembership(string MemberId, int MembershipId);
         public Task<IList<Membership>> GetMemberMembershipsList(string memberID);
         public Task<Membership> GetMembershipById(int id);
-        public Task<Membership> UpdateMembership(Membership membership);
+        public Task<int> UpdateMembership(Membership membership);
     }
 }

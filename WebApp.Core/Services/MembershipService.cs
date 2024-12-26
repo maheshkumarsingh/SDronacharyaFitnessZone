@@ -29,7 +29,6 @@ namespace SDronacharyaFitnessZone.Core.Services
             {
                 MembershipType = addMembershipRequestDTO.MembershipType,
                 MembershipStartDate = addMembershipRequestDTO.MembershipStartDate,
-                IsMembershipActive = true,
                 Member = await _memberRepository.GetMemberById(addMembershipRequestDTO.MemberLoginName),
                 PaidAmount = addMembershipRequestDTO.PaidAmount,
             };
@@ -63,10 +62,12 @@ namespace SDronacharyaFitnessZone.Core.Services
                 Id = updateMembershipRequestDTO.Id,
                 MembershipType = updateMembershipRequestDTO.MembershipType,
                 MembershipStartDate = updateMembershipRequestDTO.MembershipStartDate,
-                PaidAmount = updateMembershipRequestDTO.PaidAmount,
                 Member = await _memberRepository.GetMemberById(updateMembershipRequestDTO.MemberLoginName),
+                PaidAmount = updateMembershipRequestDTO.PaidAmount,
             };
-            return (await _membershipRepository.UpdateMembership(membership)).ToMembershipReponseDTO();
+            if(await _membershipRepository.UpdateMembership(membership) > 0)
+                 return membership.ToMembershipReponseDTO();
+            return null;
         }
     }
 }

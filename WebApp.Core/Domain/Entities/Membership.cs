@@ -68,6 +68,8 @@ namespace WebApp.Core.Domain.Entities
         {
             if (MembershipEndDate > DateOnly.FromDateTime(DateTime.Now))
                 IsMembershipActive = true;
+            else
+                IsMembershipActive = false;
         }
         private void SetMembershipAmount()
         {

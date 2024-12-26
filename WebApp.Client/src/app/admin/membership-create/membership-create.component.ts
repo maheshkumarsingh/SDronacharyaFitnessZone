@@ -16,8 +16,8 @@ import { NgIf } from '@angular/common';
   styleUrl: './membership-create.component.css'
 })
 export class MembershipCreateComponent implements OnInit {
-  memberLoginName:string = '';
-  member:Member|any = input.required<Member>();
+  memberLoginName = input.required<string>();
+  //member:Member|any = input.required<Member>();
   isCreateMembership = output<boolean>();
   newMembershipPlanForm: FormGroup = new FormGroup({});
   maxDate = new Date();
@@ -37,12 +37,12 @@ export class MembershipCreateComponent implements OnInit {
     this.maxDate = new Date(new Date().getFullYear(), 11, 31);
     this.dueAmount = 0;
     this.amount = 0;
-    this.memberLoginName = this.member().memberLoginName;
+    //this.memberLoginName = this.member().memberLoginName;
   }
 
   initializeCreateMembershipForm() {
     this.newMembershipPlanForm = new FormGroup({
-      memberLoginName: new FormControl(this.memberLoginName, [Validators.required]),
+      memberLoginName: new FormControl(this.memberLoginName(), [Validators.required]),
       membershipType: new FormControl("", [Validators.required]),
       paidAmount: new FormControl(0, [Validators.required,Validators.min(0), Validators.max(this.amount)]),
       membershipStartDate: new FormControl('', [Validators.required]),
@@ -54,11 +54,11 @@ export class MembershipCreateComponent implements OnInit {
     this.newMembershipPlanForm.patchValue({membershipStartDate: msd});
     const type:number = Number(this.newMembershipPlanForm.get('membershipType')?.value);
     this.newMembershipPlanForm.patchValue({membershipType: type});
-    this.newMembershipPlanForm.patchValue({memberLoginName: this.memberLoginName});
+    this.newMembershipPlanForm.patchValue({memberLoginName: this.memberLoginName()});
     console.log(this.newMembershipPlanForm.value);
     this.membershipService.createMembership(this.newMembershipPlanForm.value).subscribe({
       next: (response) => {
-        console.log(response);
+        //console.log(response);
         this.toastr.success('Membership Plan Created Successfully');
         this.isCreateMembership.emit(false);
         //this.router.navigateByUrl('/member-detail/'+this.memberLoginName);
@@ -66,7 +66,7 @@ export class MembershipCreateComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
-        this.toastr.success('Membership Plan not created');
+        this.toastr.error('Membership Plan not created');
       }
     });
   }
@@ -91,6 +91,7 @@ export class MembershipCreateComponent implements OnInit {
           break;
       }
     }
+    this.dueAmount = this.amount;
     return this.amount;
   }
   getDueAmount() :number{

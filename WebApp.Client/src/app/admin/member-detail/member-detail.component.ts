@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { Member } from '../../_models/member';
 import { Membership } from '../../_models/membership';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -6,50 +6,55 @@ import { CurrencyPipe, DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { MemberService } from '../../_services/member.service';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
-import { Supplement } from '../../_models/supplement';
 import { SupplementOrder } from '../../_models/SupplementOrder';
 import { MembershipCreateComponent } from "../membership-create/membership-create.component";
+import { MembershipService } from '../../_services/membership.service';
+import { MemberEditComponent } from "../member-edit/member-edit.component";
+import { MembershipEditComponent } from "../membership-edit/membership-edit.component";
 
 @Component({
   selector: 'app-member-detail',
   standalone: true,
-  imports: [DatePipe, NgIf, NgFor, NgClass, CurrencyPipe, TabsModule, GalleryModule, RouterLink, MembershipCreateComponent],
+  imports: [DatePipe, NgIf, NgFor, NgClass, CurrencyPipe, TabsModule, GalleryModule, RouterLink, MembershipCreateComponent, MemberEditComponent, MembershipEditComponent],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })
 export class MemberDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private memberService = inject(MemberService);
+  public membershipService = inject(MembershipService);
   member?: Member;
   memberships: Membership[] = [];
+  selectedMembership: Membership|null = null;
   memberLoginName: string | null = null;
   totalDueAmount: number = 0;
   totalPaidAmount: number = 0;
   images: GalleryItem[] = [];
   supplementOrdered: SupplementOrder[] = [];
   isCreateMembership: boolean = false;
-
+  isEditMembership: boolean = false;
+  constructor() {
+    effect(() => {
+      this.memberships = this.membershipService.memberships();
+      this.calculateAmounts();
+    });
+  }
   ngOnInit(): void {
     this.memberLoginName = this.route.snapshot.paramMap.get('memberLoginName');
     if (this.memberLoginName) {
-      this.fetchMemberDetails(this.memberLoginName);
+      this.fetchMemberMemberships(this.memberLoginName);
     }
     this.isCreateMembership = false;
   }
-
-  fetchMemberDetails(loginName: string): void {
-    this.memberService.getMemberByMemberLoginName(loginName).subscribe({
-      next: (member) => {
-        this.member = member;
-        this.memberships = member.memberships || [];
-        member.photos.map(p => {
-          this.images.push(new ImageItem({ src: p.url, thumb: p.url }))
-        });
-        this.supplementOrdered = member.supplementOrders;
+  fetchMemberMemberships(memberLoginName : string): void {
+    this.membershipService.getMemberships(memberLoginName).subscribe({
+      next: _ => {
+        this.memberships = this.membershipService.memberships();
+        if(this.memberships.length > 0){
         this.calculateAmounts();
+        }
       },
       error: (err) => {
-        console.error('Error fetching member details:', err);
+        console.error('Error fetching member memberships:', err);
       }
     });
   }
@@ -83,7 +88,16 @@ export class MemberDetailComponent implements OnInit {
   createMembership(): void {
     this.isCreateMembership = true;
   }
-  onChange(event : boolean): void {
+  onCancelCreate(event : boolean): void {
     this.isCreateMembership = event;
+  }
+  onEditMembership(membership : Membership): void {
+    this.selectedMembership = membership;
+    this.isEditMembership = true;
+    console.log('Selected Membership: ', this.selectedMembership);
+    console.log('isEditMembership: ', this.isEditMembership);
+  }
+  onCancelEdit(event : boolean): void {
+    this.isEditMembership = event;
   }
 }

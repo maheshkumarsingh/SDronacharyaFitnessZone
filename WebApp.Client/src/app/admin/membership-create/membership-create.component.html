@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="mb-0">New Membership for {{memberLoginName}}</h4>
+        <h4 class="mb-0">New Membership for {{memberLoginName()}}</h4>
     </div>
     <div class="card-body">
         <form [formGroup]="newMembershipPlanForm" (ngSubmit)="createMembershipPlan()">
@@ -58,10 +58,11 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-success btn-lg">Submit</button>
-                <button type="button" class="btn btn-warning btn-lg" (click)="onCancel()">Cancel</button>
-              </div>
+
+            <div class="form-group text-center mt-3">
+                <button type="submit" class="btn btn-success me-2">Submit</button>
+                <button type="button" class="btn btn-warning me-2" (click)="onCancel()">Cancel</button>
+            </div>
         </form>
     </div>
 </div>

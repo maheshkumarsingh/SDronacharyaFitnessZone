@@ -51,11 +51,14 @@
       <span class="badge bg-danger fs-5 p-2">Total Due Amount: {{ totalDueAmount | currency: 'INR' }}</span>
     </div>
   </div>
-  <ng-container *ngIf="isCreateMembership && member">
-    <app-membership-create [member]="member"  (isCreateMembership)="onChange($event)"></app-membership-create>
+  <ng-container *ngIf="isCreateMembership && this.memberLoginName" class="mt-4">
+    <app-membership-create [memberLoginName]="this.memberLoginName"  (isCreateMembership)="onCancelCreate($event)"></app-membership-create>
+  </ng-container>
+  <ng-container *ngIf="isEditMembership && this.selectedMembership" class="mt-4">
+    <app-membership-edit [membership]="this.selectedMembership" (isEditMembership)="onCancelEdit($event)"></app-membership-edit>
   </ng-container>
   <!-- Memberships Table -->
-  <div class="card shadow-lg">
+  <div class="card shadow-lg mt-4">
     <div class="card-header bg-secondary text-white">
       <h4 class="mb-0">Memberships</h4>
     </div>
@@ -70,26 +73,28 @@
             <th>Paid Amount</th>
             <th>Due Amount</th>
             <th>Total Amount</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let membership of memberships"
-            [ngClass]="{ 'table-success': membership.isMembershipActive, 'table-danger': !membership.isMembershipActive }">
-            <td>{{ getMembershipType(membership.membershipType) }}</td>
-            <td>
-              <span
-                [ngClass]="{ 'badge bg-success': membership.isMembershipActive, 'badge bg-danger': !membership.isMembershipActive }">
-                {{ membership.isMembershipActive ? 'Active' : 'Inactive' }}
-              </span>
-            </td>
-            <td>{{ membership.membershipStartDate | date }}</td>
-            <td>{{ membership.membershipEndDate | date }}</td>
-            <td>{{ membership.paidAmount | currency: 'INR' }}</td>
-            <td>{{ membership.dueAmount | currency: 'INR' }}</td>
-            <td>{{ membership.membershipAmount | currency: 'INR'}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+          <tr *ngFor="let membership of this.membershipService.memberships()"
+          [ngClass]="{ 'table-success': membership.isMembershipActive, 'table-danger': !membership.isMembershipActive }">
+          <td>{{ getMembershipType(membership.membershipType) }}</td>
+          <td>
+            <span
+            [ngClass]="{'badge bg-success': membership.isMembershipActive, 'badge bg-danger': !membership.isMembershipActive }">
+            {{ membership.isMembershipActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+        <td>{{ membership.membershipStartDate | date }}</td>
+        <td>{{ membership.membershipEndDate | date }}</td>
+        <td>{{ membership.paidAmount | currency: 'INR' }}</td>
+        <td>{{ membership.dueAmount | currency: 'INR' }}</td>
+        <td>{{ membership.membershipAmount | currency: 'INR'}}</td>
+        <td><button class="button button-warning btn-sm" (click)="onEditMembership(membership)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
 </div>

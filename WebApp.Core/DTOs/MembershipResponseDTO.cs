@@ -35,7 +35,7 @@ namespace SDronacharyaFitnessZone.Core.DTOs
                 MembershipStartDate = membership.MembershipStartDate,
                 MembershipEndDate = membership.MembershipEndDate,
                 MembershipAmount = membership.MembershipAmount,
-                //MemberLoginName = membership.Member.MemberLoginName,
+                MemberLoginName = membership.Member.MemberLoginName,
                 PaidAmount = membership.PaidAmount,
                 DueAmount = membership.DueAmount,
             };
