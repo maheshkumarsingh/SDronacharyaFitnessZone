@@ -59,7 +59,17 @@ namespace WebApp.Infrastructure.Repositories
             var query = _dbContext.Members
                                     .Include(m => m.Memberships)
                                     .Include(m => m.SupplementOrders)
-                                    .Include(m => m.Photos);
+                                    .Include(m => m.Photos).AsQueryable();
+
+            query = query.Where(m => m.MemberLoginName != usersParams.CurrentMemberLoginName);
+            if(usersParams.FirstName != null)
+            {
+                query = query.Where(m => m.FirstName == usersParams.FirstName);
+            }
+            else if (usersParams.Status != null)
+            {
+                query = query.Where(m => m.Memberships.Any(x => x.IsMembershipActive== usersParams.Status));
+            }
             return await PagedList<Member>.Create(query, usersParams.PageNumber, usersParams.PageSize);
         }
 

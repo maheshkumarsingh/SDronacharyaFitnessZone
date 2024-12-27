@@ -1,4 +1,6 @@
-﻿namespace WebApp.Core.Helpers
+﻿using WebApp.Core.Domain.Entities.Enums;
+
+namespace WebApp.Core.Helpers
 {
     public class UsersParams
     {
@@ -11,5 +13,11 @@
             get => _pageSize;
             set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
+        public string FirstName { get; set; } = string.Empty;
+        public string? CurrentMemberLoginName { get; set; }
+        public string PhoneNumber { get; set; } = string.Empty;
+        public string Plan { get; set; } = string.Empty;
+        public bool Status { get; set; }
+        public string Defaulters { get; set; } = string.Empty;
     }
 }

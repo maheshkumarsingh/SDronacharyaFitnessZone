@@ -23,11 +23,12 @@ namespace WebApp.UserInterface.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<IEnumerable<MemberResponseDTO>>> GetAllMembers(UsersParams usersParams)
+        public async Task<ActionResult<IEnumerable<MemberResponseDTO>>> GetAllMembers([FromQuery]UsersParams usersParams)
         {
-            var members = await _memberService.GetAllMembersAsync(usersParams);
-            Response.AddPaginationHeader(members.CurrentPage, members.PageSize, members.TotalCount, members.TotalPages);
-            return Ok(members);
+            usersParams.CurrentMemberLoginName = User.GetMemberLoginNameByClaim();
+            var membersResponseDTOs = await _memberService.GetAllMembersAsync(usersParams);
+            Response.AddPaginationHeader(membersResponseDTOs);
+            return Ok(membersResponseDTOs);
         }
         [HttpGet("{memberLoginName}")]
         public async Task<IActionResult> GetMemberById(string memberLoginName)

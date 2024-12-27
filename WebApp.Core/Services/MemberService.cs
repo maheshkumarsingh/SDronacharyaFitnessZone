@@ -7,7 +7,7 @@ using WebApp.Core.Domain.RepositoryContracts;
 using WebApp.Core.DTOs;
 using WebApp.Core.Helpers;
 using WebApp.Core.ServiceContracts;
-using WebApp.Core.Helpers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApp.Core.Services
 {
@@ -57,11 +57,10 @@ namespace WebApp.Core.Services
                 var memberResponseDTO = member.ToMemberResponseDTO();
                 memberResponseDTO.Memberships = member.Memberships!.Select(x => x.ToMembershipReponseDTO()).ToList();
                 memberResponseDTO.Photos = member.Photos.Select(x => x.ToPhotoResponseDTO()).ToList();
-                memberResponseDTO.SupplementOrders = member.SupplementOrders.Select(x => x.ToSupplementResponseDTO()).ToList();
+                memberResponseDTO.SupplementOrders = member.SupplementOrders?.Select(x => x.ToSupplementResponseDTO()).ToList() ?? new List<SupplementOrderResponseDTO>();
                 memberResponseDTOs.Add(memberResponseDTO);
             }
-            //Response.AddPaginationHeader(members.CurrentPage, members.PageSize, members.TotalCount, members.TotalPages);
-            return null;
+            return new PagedList<MemberResponseDTO>(memberResponseDTOs, members.TotalCount, members.CurrentPage, members.PageSize);
         }
 
         public async Task<MemberResponseDTO> GetMemberByIdAsync(string memberID)

@@ -1,10 +1,18 @@
 ﻿namespace WebApp.Core.Helpers
 {
-    public class PaginationHeader(int currentPage, int itemsPerPage, int totalItems, int totalpages)
+    public class PaginationHeader
     {
-        public int CurrentPage { get; set; } = currentPage;
-        public int TotalPages { get; set; } = totalpages;
-        public int PageSize { get; set; } = itemsPerPage;
-        public int TotalCount { get; set; } = totalItems;
+        public PaginationHeader(int currentPage, int itemsPerPage, int totalItems, int totalPages)
+        {
+            CurrentPage = currentPage;
+            ItemsPerPage = itemsPerPage;
+            TotalItems = totalItems;
+            TotalPages = totalPages;
+        }
+
+        public int CurrentPage { get; set; }
+        public int ItemsPerPage { get; set; }
+        public int TotalItems { get; set; }
+        public int TotalPages { get; set; }
     }
 }

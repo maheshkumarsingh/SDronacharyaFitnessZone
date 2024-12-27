@@ -55,19 +55,19 @@ export class MemberEditComponent implements OnInit {
   }
 
   loadMemberToEdit() {
-    const memberLoginName = this.route.snapshot.paramMap.get('memberLoginName')!;
-    console.log('loadMember' + memberLoginName);
-    if (!memberLoginName) return;
-    this.memberService.getMemberByMemberLoginName(memberLoginName).subscribe({
-      next: (member) => {
-        this.member = member,
-          this.photoUrl = this.member.photos.find(p => p.isMain)?.url;
-        console.log('photoUrl' + this.photoUrl);
-      },
-      error: (err) => {
-        console.error('Error fetching member details:', err);
-      }
-    })
+    // const memberLoginName = this.route.snapshot.paramMap.get('memberLoginName')!;
+    // console.log('loadMember' + memberLoginName);
+    // if (!memberLoginName) return;
+    // this.memberService.getMemberByMemberLoginName(memberLoginName).subscribe({
+    //   next: (member) => {
+    //     this.member = member,
+    //       this.photoUrl = this.member.photos.find(p => p.isMain)?.url;
+    //     console.log('photoUrl' + this.photoUrl);
+    //   },
+    //   error: (err) => {
+    //     console.error('Error fetching member details:', err);
+    //   }
+    // })
   }
   onMemberChange(event: Member) {
     this.member = event;

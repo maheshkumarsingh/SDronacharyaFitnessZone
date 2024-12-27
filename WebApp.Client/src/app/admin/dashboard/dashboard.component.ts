@@ -9,7 +9,7 @@ import { AccountService } from '../../_services/account.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MembersListComponent, MemberCreateComponent, ReportComponent, RouterLink],
+  imports: [MembersListComponent, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

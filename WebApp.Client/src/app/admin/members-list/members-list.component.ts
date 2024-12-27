@@ -6,25 +6,30 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Membership } from '../../_models/membership';
 import { MemberService } from '../../_services/member.service';
+import { PageChangedEvent, PaginationModule } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-members-list',
   standalone: true,
-  imports: [FormsModule, NgFor, NgIf, NgClass, RouterLink],
+  imports: [FormsModule, NgFor, NgIf, NgClass, RouterLink, PaginationModule],
   templateUrl: './members-list.component.html',
   styleUrl: './members-list.component.css'
 })
-export class MembersListComponent implements OnInit{
-  //members: Member[] = [];
+export class MembersListComponent implements OnInit {
+
   memberService = inject(MemberService);
-  
+  pageNumber = 1;
+  pageSize = 5;
+
+
+
   ngOnInit(): void {
-    if(this.memberService.members.length === 0)
+    if (!this.memberService.paginatedResult())
       this.fetchMembers();
   }
 
   fetchMembers() {
-    this.memberService.getAllMembers();
+    this.memberService.getAllMembers(this.pageNumber, this.pageSize);
     console.log('Memers-fetched')
   }
   getLatestMembership(memberships: Membership[]): Membership | null {
@@ -46,7 +51,13 @@ export class MembersListComponent implements OnInit{
       case 3:
         return 'Yearly';
       default:
-        return 'Unknown'; // Fallback in case of unexpected value
+        return 'Unknown';
     }
-  }  
+  }
+  pageChanged($event: PageChangedEvent) {
+    if (this.pageNumber !== $event.page) {
+      this.pageNumber = $event.page;
+      this.fetchMembers();
+    }
+  }
 }
