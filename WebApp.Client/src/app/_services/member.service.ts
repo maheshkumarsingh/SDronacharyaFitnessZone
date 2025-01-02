@@ -5,6 +5,7 @@ import { Member } from '../_models/member';
 import { Observable, of, Subscription, tap } from 'rxjs';
 import { Photo } from '../_models/photo';
 import { PaginatedResult } from '../_models/pagination';
+import { UserParams } from '../_models/userParams';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,28 @@ export class MemberService {
   // members = signal<Member[]>([]);
   paginatedResult = signal<PaginatedResult<Member[]> | null>(null);
 
-  getAllMembers(pageNumber?: number , pageSize?:number):Subscription{
-    let params = new HttpParams();
-    if(pageNumber && pageSize){
-      params = params.append('pageNumber', pageNumber);
-      params = params.append('pageSize', pageSize);
-    }
+  getAllMembers(userParams:UserParams):Subscription{
     //https://localhost:7221/api/members?pageNumber=1&pageSize=5
+    let params = this.setPaginationHeader(userParams.pageNumber, userParams.pageSize);
+
+    // if (userParams.phoneNumber) {
+    //   params = params.append('phoneNumber', userParams.phoneNumber);
+    // }
+    // if (userParams.firstName) {
+    //   params = params.append('firstName', userParams.firstName);
+    // }
+    // if (userParams.lastName) {
+    //   params = params.append('lastName', userParams.lastName);
+    // }
+    if (userParams.gender) {
+      params = params.append('gender', userParams.gender);
+    }
+    if (userParams.plan) {
+      params = params.append('plan', userParams.plan);
+    }
+    if (userParams.planStatus) {
+      params = params.append('planStatus', userParams.planStatus);
+    }
     return this.http.get<Member[]>(this.baseUrl+'members', {observe: 'response', params}).subscribe({
       next: response =>{
         this.paginatedResult.set({
@@ -30,6 +46,14 @@ export class MemberService {
         })
       }
     });
+  }
+  private setPaginationHeader(pageNumber: number, pageSize: number) : HttpParams{
+    let params = new HttpParams();
+    if(pageNumber && pageSize){
+      params = params.append('pageNumber', pageNumber);
+      params = params.append('pageSize', pageSize);
+    }
+    return params;
   }
   getMemberByMemberLoginName(memberLoginName: string){
     // const member = this.members().find(x => x.memberLoginName === memberLoginName);

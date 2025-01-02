@@ -25,7 +25,7 @@ namespace WebApp.UserInterface.Controllers
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<MemberResponseDTO>>> GetAllMembers([FromQuery]UsersParams usersParams)
         {
-            usersParams.CurrentMemberLoginName = User.GetMemberLoginNameByClaim();
+            usersParams.CurrentUser = User.GetMemberLoginNameByClaim();
             var membersResponseDTOs = await _memberService.GetAllMembersAsync(usersParams);
             Response.AddPaginationHeader(membersResponseDTOs);
             return Ok(membersResponseDTOs);

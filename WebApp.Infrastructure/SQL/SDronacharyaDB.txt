@@ -192,3 +192,42 @@ select * from Supplements;
 
 rollback
 --commit
+
+
+
+USE [SDronacharyaDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[MarkInactiveMemberships]    Script Date: 23-12-2024 23:56:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[MarkInactiveMemberships]
+AS
+BEGIN
+    -- Declare the current date for comparison
+    DECLARE @CurrentDate DATE = GETDATE();
+
+    -- Update the Membership table to set IsMembershipActive to 0 where MembershipEndDate has passed
+    UPDATE Memberships
+    SET IsMembershipActive = 0
+    WHERE MembershipEndDate < @CurrentDate
+      AND IsMembershipActive = 1; -- Ensure we only update active memberships
+
+    -- Optionally, output the number of rows affected
+    PRINT 'Memberships marked as inactive: ' + CAST(@@ROWCOUNT AS VARCHAR);
+END
+
+
+GO
+
+
+
+sdronacharyaadmin
+Password@1
+
+
+

@@ -7,29 +7,48 @@ import { Router, RouterLink } from '@angular/router';
 import { Membership } from '../../_models/membership';
 import { MemberService } from '../../_services/member.service';
 import { PageChangedEvent, PaginationModule } from 'ngx-bootstrap/pagination';
+import { AccountService } from '../../_services/account.service';
+import { UserParams } from '../../_models/userParams';
 
 @Component({
   selector: 'app-members-list',
   standalone: true,
-  imports: [FormsModule, NgFor, NgIf, NgClass, RouterLink, PaginationModule],
+  imports: [FormsModule, NgFor, NgIf, NgClass, RouterLink, PaginationModule, FormsModule],
   templateUrl: './members-list.component.html',
   styleUrl: './members-list.component.css'
 })
 export class MembersListComponent implements OnInit {
 
   memberService = inject(MemberService);
-  pageNumber = 1;
-  pageSize = 5;
-
-
-
+  private accountService = inject(AccountService);
+  //userParams = new UserParams(this.accountService.currentMember());
+  userParams = new UserParams();
+  selectedMembershipType: number = 0;
+  genderList = [
+                  { value: 0, display: 'Select' }, 
+                  { value: 'Male', display: 'Males' }, 
+                  { value: 'Female', display: 'Females' }
+               ];
+  planList = [
+                { value: '', display: 'Select' }, 
+                { value: 'Monthly', display: 'Monthly' }, 
+                { value: 'Quaterly', display: 'Quaterly' },
+                { value: 'Half_Yearly', display: 'Half-Yearly' },
+                { value: 'Yearly', display: 'Yearly' },
+             ]
   ngOnInit(): void {
     if (!this.memberService.paginatedResult())
       this.fetchMembers();
+    this.userParams.plan='';
+    this.userParams.gender =0;
+    this.userParams.planStatus = 0;
   }
-
+  resetFilters() {
+    this.userParams = new UserParams();
+    this.fetchMembers();
+  }
   fetchMembers() {
-    this.memberService.getAllMembers(this.pageNumber, this.pageSize);
+    this.memberService.getAllMembers(this.userParams);
     console.log('Memers-fetched')
   }
   getLatestMembership(memberships: Membership[]): Membership | null {
@@ -55,8 +74,8 @@ export class MembersListComponent implements OnInit {
     }
   }
   pageChanged($event: PageChangedEvent) {
-    if (this.pageNumber !== $event.page) {
-      this.pageNumber = $event.page;
+    if (this.userParams.pageNumber !== $event.page) {
+      this.userParams.pageNumber = $event.page;
       this.fetchMembers();
     }
   }

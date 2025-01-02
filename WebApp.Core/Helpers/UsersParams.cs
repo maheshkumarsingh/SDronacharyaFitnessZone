@@ -13,11 +13,14 @@ namespace WebApp.Core.Helpers
             get => _pageSize;
             set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
-        public string FirstName { get; set; } = string.Empty;
-        public string? CurrentMemberLoginName { get; set; }
-        public string PhoneNumber { get; set; } = string.Empty;
-        public string Plan { get; set; } = string.Empty;
-        public bool Status { get; set; }
-        public string Defaulters { get; set; } = string.Empty;
+
+        //Filters
+        public string? Gender { get; set; }
+        public string? Plan { get; set; }
+        public string? PlanStatus { get; set; }
+        public string? CurrentUser { get; set; }
+        //Sort
+        public string OrderBy { get; set; } = "DueAmount";
+        //Search
     }
 }

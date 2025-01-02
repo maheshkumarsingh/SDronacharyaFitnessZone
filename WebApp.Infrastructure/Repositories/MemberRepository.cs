@@ -59,16 +59,50 @@ namespace WebApp.Infrastructure.Repositories
             var query = _dbContext.Members
                                     .Include(m => m.Memberships)
                                     .Include(m => m.SupplementOrders)
-                                    .Include(m => m.Photos).AsQueryable();
-
-            query = query.Where(m => m.MemberLoginName != usersParams.CurrentMemberLoginName);
-            if(usersParams.FirstName != null)
+                                    .Include(m => m.Photos)
+                                    .OrderBy(m => m.Id)
+                                    .AsQueryable();
+            query = query.Where(m => m.MemberLoginName != usersParams.CurrentUser);
+            if (usersParams.Gender != null)
             {
-                query = query.Where(m => m.FirstName == usersParams.FirstName);
+                if (Enum.TryParse<Gender>(usersParams.Gender, out var gender))
+                {
+                    query = query.Where(m => m.Gender == gender);
+                }
             }
-            else if (usersParams.Status != null)
+            if (usersParams.Plan != null)
             {
-                query = query.Where(m => m.Memberships.Any(x => x.IsMembershipActive== usersParams.Status));
+                if (Enum.TryParse<MembershipType>(usersParams.Plan, out var membershipType))
+                {
+                    query = query.Where(m => m.Memberships != null && m.Memberships
+                                            .OrderByDescending(x => x.MembershipEndDate)
+                                            .Take(1)
+                                            .Any(ms => ms.MembershipType == membershipType));
+                }
+            }
+            if (usersParams.PlanStatus != null)
+            {
+                if (bool.TryParse(usersParams.PlanStatus, out var planStatus))
+                {
+                    query = query.Where(m => m.Memberships != null && m.Memberships
+                                            .OrderByDescending(x => x.MembershipEndDate)
+                                            .Take(1)
+                                            .Any(ms => ms.IsMembershipActive == planStatus));
+                }
+            }
+            if (usersParams.OrderBy != null)
+            {
+                query = usersParams.OrderBy switch
+                {
+                    "DueAmount" => query
+                                    .OrderByDescending(m => m.Memberships
+                                                                .OrderByDescending(x => x.MembershipEndDate)
+                                                                .FirstOrDefault().DueAmount),
+                    "MembershipEndDate" => query
+                        .OrderBy(m => m.Memberships
+                            .Max(x => x.MembershipEndDate)),
+                    _ => query.OrderBy(m => m.Id)
+                };
             }
             return await PagedList<Member>.Create(query, usersParams.PageNumber, usersParams.PageSize);
         }
