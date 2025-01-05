@@ -22,10 +22,11 @@ import { MembershipEditComponent } from "../membership-edit/membership-edit.comp
 export class MemberDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   public membershipService = inject(MembershipService);
+  public memberService = inject(MemberService);
   member?: Member;
   memberships: Membership[] = [];
   selectedMembership: Membership|null = null;
-  memberLoginName: string | null = null;
+  memberLoginName: string|null = null;
   totalDueAmount: number = 0;
   totalPaidAmount: number = 0;
   images: GalleryItem[] = [];
@@ -40,12 +41,24 @@ export class MemberDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.memberLoginName = this.route.snapshot.paramMap.get('memberLoginName');
-    if (this.memberLoginName) {
-      this.fetchMemberMemberships(this.memberLoginName);
-    }
+    if(!this.memberLoginName) return;
+    this.loadMember(this.memberLoginName);
+    this.fetchMemberMemberships(this.memberLoginName);
     this.isCreateMembership = false;
   }
-  fetchMemberMemberships(memberLoginName : string): void {
+  loadMember(memberLoginName:string):void{
+    this.memberService.getMemberByMemberLoginName(memberLoginName).subscribe({
+      next: (member) => {
+        this.member = member;
+        this.images = member.photos.map((photo) => new ImageItem({ src: photo.url, thumb: photo.url }));
+        this.supplementOrdered = member.supplementOrders;
+      },
+      error: (err) => {
+        console.error('Error fetching member:', err);
+      }
+    });
+  }
+  fetchMemberMemberships(memberLoginName : string|null): void {
     this.membershipService.getMemberships(memberLoginName).subscribe({
       next: _ => {
         this.memberships = this.membershipService.memberships();

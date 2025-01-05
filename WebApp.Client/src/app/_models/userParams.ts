@@ -2,10 +2,10 @@ import { Member } from './member'; // Adjust the import path as necessary
 
 export class UserParams
 {
-    phoneNumber: string | undefined;
+    //phoneNumber: string | undefined;
     gender : number | undefined;
-    firstName:string | undefined;
-    lastName:string | undefined;
+    //firstName:string | undefined;
+    //lastName:string | undefined;
     pageNumber = 1;
     pageSize = 10;
     plan:string | undefined;

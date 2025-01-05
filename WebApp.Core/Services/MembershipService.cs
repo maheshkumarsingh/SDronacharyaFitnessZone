@@ -33,9 +33,10 @@ namespace SDronacharyaFitnessZone.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task<IList<MembershipPlan>> GetMembershipPlans()
+        public async Task<IList<MembershipPlanResponseDTO>> GetMembershipPlans()
         {
-            return _membershipRepository.GetMembershipPlansAysnc();
+            var plans = await _membershipRepository.GetMembershipPlansAysnc();
+            return plans.Select(plan => plan.ToMembershipPlanResponseDTO()).ToList();
         }
 
         public async Task<IList<MembershipResponseDTO>> GetMemberMembershipsList(string memberLoginId)

@@ -1,1 +1,28 @@
-<p>plan-list works!</p>
+<section class="membership-plans">
+    <div class="text-center mb-4">
+        <h2>Choose Your Membership Plan</h2>
+    </div>
+    <div class="row g-4">
+        @if(membershipPlans.length>0){
+            <div class="col-md-3" *ngFor="let plan of membershipPlans">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">
+                            <i class="fa fa-gift"></i> {{ plan.membershipName }}
+                        </h3>
+                        @if (plan.duration ===1) {
+                            <p><strong>Access for {{ plan.duration }} month</strong></p>
+                        }
+                        @else {
+                            <p><strong>Access for {{ plan.duration }} months</strong></p>
+                        }
+                        <p class="price fw-bold">{{ plan.price | currency:'INR':'symbol':'1.0-0' }}</p>
+                        <button class="btn btn-success w-100">
+                            <i class="fa fa-check-circle"></i> Select Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

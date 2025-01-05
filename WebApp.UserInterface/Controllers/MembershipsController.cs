@@ -17,7 +17,7 @@ namespace SDronacharyaFitnessZone.UserInterface.Controllers
         }
 
         [HttpGet("allMemberships")]
-        public async Task<IList<MembershipPlan>> GetMembershipPlans()
+        public async Task<IList<MembershipPlanResponseDTO>> GetMembershipPlans()
         {
             return await _membershipService.GetMembershipPlans();
         }
