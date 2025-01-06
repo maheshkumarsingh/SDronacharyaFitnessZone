@@ -73,7 +73,8 @@ namespace WebApp.Core.Domain.Entities
         public List<SupplementOrder>? SupplementOrders { get; set; } = [];
         public IList<Photo> Photos { get; set; } = [];
         public int GymId { get; set; } = 1;
-
+        public List<MemberMentor> MentoredBy { get; set; } = [];
+        public List<MemberMentor> Mentoring { get; set; } = [];
         public int GetAge()
         {
             return DateOfBirth.CalculateAge();

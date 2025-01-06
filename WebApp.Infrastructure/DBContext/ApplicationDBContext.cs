@@ -14,6 +14,7 @@ namespace WebApp.Infrastructure.DBContext
         public DbSet<SupplementOrder> SupplementOrders { get; set; }
         public DbSet<MembershipPlan> MembershipPlans { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<MemberMentor> MemberMentors { get; set; }
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
         }
@@ -27,7 +28,20 @@ namespace WebApp.Infrastructure.DBContext
                 .Singularize()
                 .UseNumberAsIdentifier());
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<MemberMentor>()
+                    .HasKey(k => new { k.MentorLoginName, k.MemberLoginName });
+
+            modelBuilder.Entity<MemberMentor>()
+                    .HasOne(s => s.Mentor)
+                    .WithMany(t => t.Mentoring)
+                    .HasForeignKey(s => s.MentorLoginName)
+                    .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<MemberMentor>()
+                    .HasOne(s => s.Member)
+                    .WithMany(t => t.MentoredBy)
+                    .HasForeignKey(s => s.MemberLoginName)
+                    .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
